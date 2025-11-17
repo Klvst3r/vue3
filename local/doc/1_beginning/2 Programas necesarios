@@ -1,0 +1,34 @@
+2 Programas necesarios
+
+lo primero requerido es tener nodJS
+
+verificamos con
+	node -v
+
+Si no instalamos
+
+	sudo apt get install nodejs
+
+Node. js es un entorno de ejecución  de JavaScript de código abierto y multiplataforma basado en el motor JavaScript V8 de Chrome, es decir en la capa del servidor creado originalmente por Ryan Dahl y lanzado en 2009.
+
+Segundo
+
+Un editor de codigo
+
+Podemos elegir entre multiples opciones
+
+	- Visual Studio Code
+	- Sublime text
+	- Cursor
+	- windsurf
+
+La tercera herramienta es un navegador
+
+	- Google Crome
+	- Edge
+	- Mozilla Firefox
+	- Brave
+	- Opera o e que mas nos guste
+
+		
+

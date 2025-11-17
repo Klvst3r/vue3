@@ -1,0 +1,151 @@
+1- Inizializar run dev
+
+Al ejecutar 
+	$ npm run dev
+
+Genera un virtual box co la url
+
+		 VITE v7.2.2  ready in 1033 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  Vue DevTools: Open http://localhost:5173/__devtools__/ as a separate window
+  ➜  Vue DevTools: Press Alt(⌥)+Shift(⇧)+D in App to toggle the Vue DevTools
+  ➜  press h + enter to show help
+
+
+Al abrir la pagina que abre es:
+
+index.html
+
+Analzando e codigo
+
+
+
+
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+
+
+
+Es un documento HTMl cualquiera, es un documento sin contenido, entonces lo que esta visualizando son las dos ultias lineas:
+
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+
+Al primera linea es un simple div, el cual contiene un id y la segunda linea se trata de un script, que esta trayendo el contenido de un contenido en el origine
+    /src/main.js
+
+
+---
+import { createApp } from 'vue'
+import App from './App.vue'
+
+createApp(App).mount('#app')
+---
+
+
+Esta incorporando un objeto llamado createAPP dentro de las llaves {}
+
+Despues un componente 
+
+y en la tercera linea indicamos que queremos inicializar vue
+
+
+createApp(App).mount('#app')
+
+Sobre un elemento que tenga el id app que es el elemento con el id div en el index.html
+
+
+Ademas se esta inizializando con un componente, entendiendo que vue es un framework que se basa en componentes, asiq ue cualquiero contenido que queramos regisrar debera ser dentro de un componente 
+el compoenente por defeto es App que es el encargado de mostrar todo el cntendio 
+
+Los componentes sueles tener tres partes
+
+App.vue
+
+
+<script setup></script>
+
+<template>
+  <h1>You did it!</h1>
+  <p>
+    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
+    documentation
+  </p>
+</template>
+
+<style scoped></style>
+
+
+
+
+1. un script
+2. el temnlate dentro del cual vamos a colocar todo el contenido html que tendra el componente y la tercera sección son los
+3. Estilos
+
+Eliminamos odo el contenido de las tres secciones,
+
+inclyendo
+
+  <h1>You did it!</h1>
+  <p>
+    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
+    documentation
+  </p>
+
+
+Qeudando el componente asi:
+
+
+  <script setup></script>
+
+<template></template>
+
+<style scoped></style>
+
+
+
+En el archivo main.js
+
+no estamos importando los estilos
+
+Anteriormente conteniua un archivo assets con los estilos css
+
+Como no lo tenemos vamos a crear nuestros estilos dentro de
+
+assets/main.css
+
+e importamos esos estilos
+
+
+
+Vite une las cosas importantes ya que renderiza el contenido sin la necesidad de refrescarlo a hacer cambios se ven reflejados
+
+Los componentes para que se consideren componentes, lo unico que necesitan tener es el valor del tempralte 
+
+
+Si queremos modificar estilos globales entonces deben estar dentro de 
+
+src/
+ ├─ assets/
+ │   └─ styles.css
+ ├─ App.vue
+ ├─ main.js
+ └─ ...
+
+
+Asi entonces ya podremos ocupar los estilos pero dentro de la carpeta src y no fuera de ella.
+
+

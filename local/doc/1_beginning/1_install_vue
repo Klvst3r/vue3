@@ -78,4 +78,8 @@ Para abrir en el navegador es cn CTRL + Click
 
 Abrimos ls url en el navehador y tendrmos nuestro promer projecto inicializado
 
-		
+Mientras estemos en la etapa de desarrollo ejecutaremos 
+	$ npm run dev
+
+Ahora dbeeos instalar la extensión oficial de vue, tambien lo solicitara VSCode
+			
