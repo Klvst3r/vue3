@@ -148,4 +148,158 @@ src/
 
 Asi entonces ya podremos ocupar los estilos pero dentro de la carpeta src y no fuera de ella.
 
+En el script vamos a definir una constante
+
+
+en los estilos definimos 
+
+y a la clase p le agregfuemos el estilo 
+
+
+
+Si queremos hacer
+
+<p class = "{{ class }}">
+    Hola mundo 
+
+
+Pero {{ }} solo permite interpolar texto no elementos de estilos, si queremos colocarlo dentro de algun atributo puede ser para clases, para id y cualquier atributo de la etiqueta
+
+eso es con el atributo
+
+v-bind
+
+luego especificar : y a continuación el atributo al cual le queremos agregar contenido dinamico en este cso es class = "" y dentro de las comillas la areferencia al nombre de la variable o constante colocada lo que estamos es hacer una clase 
+
+Entonces
+
+Tu componente es casi correcto, pero el error está en el uso de v-bind.
+
+👉 v-bind="clase" es incorrecto, porque v-bind sin argumento solo sirve para asignar múltiples propiedades de un objeto, no para asignar una clase.
+
+Ejemplo incorrecto (lo tuyo):
+
+<p v-bind="clase">Hola mundo</p>
+
+
+Esto intenta “bindear” cada propiedad del string "bg-green" como un atributo…
+Y por eso no funciona.
+
+✅ La forma correcta es usar:
+✔ :class="clase"
+
+
+<script setup>
+const clase = "bg-green";
+</script>
+
+<template>
+  <p :class="clase">Hola mundo</p>
+</template>
+
+<style scoped>
+.bg-green {
+  background-color: green;
+}
+</style>
+
+
+
+¿Por qué así?
+
+:class="variable" → asigna una clase dinámica
+
+v-bind="variable" → solo sirve cuando la variable es un objeto, ej:
+
+const attrs = {
+  id: "titulo",
+  class: "bg-green"
+};
+
+
+y usas:
+
+<p v-bind="attrs"></p>
+
+
+✔ Conclusión
+
+Usa:
+
+<p :class="clase">Hola mundo</p>
+
+
+Y tu componente funcionará perfecto.
+
+
+con esto hemos definido dinamicamente una clase.
+
+
+Ahora los atributos de enlace 
+  <p :class="clase">Hola mundo</p>
+
+
+Que es a version abrevida de v-bind lo que entiende vue es que queremos usar un atributo 
+
+
+Aora 
+
+podemos definir una constante id y para culquier elemento que tenga el id llamado parrafo se aplique el backgorund.color definido
+
+
+
+<script setup>
+const id = "parrafo";
+</script>
+
+<template>
+  <p :id="id">Hola mundo</p>
+</template>
+
+<style scoped>
+#parrafo {
+  background-color: green;
+}
+</style>
+
+
+
+puedo hacelo asi;
+<template>
+  <p :id>Hola mundo</p>
+</template>
+
+
+
+Ahora dentro del template quiro colocar un boton 
+
+<template>
+  <button>Haz click</button>
+</template>
+
+
+Los botones tienen una propiedad llamada disabled
+
+
+que permite deshabilitar el boton dependiendo del valor de la varable lo deshabiitara o lo habiitara 
+
+
+
+Podemos utilizar los enlaces di atributo
+
+
+
+<script setup>
+const idDisabled = true;
+</script>
+
+<template>
+  <button :disabled="idDisabled">Haz click</button>
+</template>
+
+<style scoped></style>
+
+
+
+el valor de isDisabled puede ser tru o false
 

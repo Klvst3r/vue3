@@ -1,0 +1,30 @@
+3. Sintaxis de plantilla
+
+La interpolación es una de las características más poderosas de Vue 3. Vamos a utilizar la interpolación para enlazar datos y mostrarlos en la interfaz de usuario.
+
+
+La interpolación es lo que se hizo justamente aca
+
+{{ msg }}
+
+colocando las {{ }} y dentro la variable, lo cal el contenido de la variable se va a mostrar en la vista 
+
+podriamos hacer
+
+const = msg = '<h1> Hola mundo </h1>';
+
+el h1 se muestra de manera explicitamente po rque  las {{ }} escapan del contenido html y lo cual mostraran tal cual, si necesitamos renderizar ls etiquetas.
+
+si queremos renderizarlos podremos hacer
+
+
+<script setup>
+const msg = "<h1>Hola Klvst3r</h1>";
+</script>
+
+<template>
+  <div v-html="msg"></div>
+</template>
+
+
+Lo que hara esta etributo v-html dentro va el nombre de la constante, 

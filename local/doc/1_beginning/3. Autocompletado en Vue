@@ -1,0 +1,113 @@
+3. Autocompletado en Vue
+
+Aunque tengas GitHub Copilot y la extensión oficial de Vue, VS Code no te autocompleta las etiquetas básicas como <div></div> si falta una configuración clave.
+
+Aquí va la solución completa:
+
+1. Instala esta extensión (muy importante)
+
+Además de la extensión oficial de Vue, debes instalar:
+
+Volar
+(Vue Language Features — Official)
+ID: Vue.volar
+
+Y NO instales Vetur si estás usando Vue 3 (o desactívala).
+
+2. Desactiva Vetur si está instalado
+
+Para evitar conflictos:
+
+Ve a extensiones
+
+Busca Vetur
+
+Selecciona → Disable
+
+3. Activa el autocompletado HTML dentro de archivos .vue
+
+Abre tu configuración de VS Code (Ctrl + ,) y agrega esto:
+
+
+{
+  "emmet.includeLanguages": {
+    "vue": "html",
+    "vue-html": "html"
+  },
+  "editor.inlineSuggest.enabled": true
+}
+
+
+4. Verifica que Emmet esté activo
+
+En Configuración → Busca:
+
+✔ Emmet: Trigger Expansion On Tab → Actívalo
+Esto te permite escribir:
+
+div + TAB
+
+y lo expande a:
+
+<div></div>
+
+Si no está activo, no funciona.
+✅ 5. Reinicia VS Code (obligatorio)
+
+Volar y Emmet no se activan completamente hasta reiniciar.
+🔍 Prueba rápida
+
+Abre un archivo App.vue y escribe:
+
+div
+
+Presiona TAB
+
+Debe generar:
+
+<div></div>
+
+📌 Si aún no funciona
+
+Te pido que me envíes lo siguiente:
+
+    La salida de tu configuración Emmet:
+    Comando: → Ctrl + Shift + P → Open Settings (JSON)
+
+    Una captura de tus extensiones instaladas
+
+Y te arreglo la configuración exacta.
+
+
+
+
+
+
+
+En settings.json añade:
+
+
+quedando nuestro > settings.json
+
+
+{
+  "editor.wordWrap": "on",
+  "editor.unicodeHighlight.nonBasicASCII": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.activityBar.location": "hidden",
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "editor.formatOnSave": true,
+
+  // Agregar aquí la configuración de Emmet
+  "emmet.includeLanguages": {
+    "vue": "html",
+    "vue-html": "html"
+  },
+
+  // Habilitar sugerencias inline (Copilot + Emmet)
+  "editor.inlineSuggest.enabled": true
+}
+
+
+Esto le dice a Emmet que trate .vue como HTML y habilita autocompletado.
+

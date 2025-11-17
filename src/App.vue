@@ -1,9 +1,12 @@
 <script setup>
-const msg = "Hola Klvst3r";
+const idDisabled = false; //Posible valores: true | false
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
+  <p>
+    {{ isDisabled ? "Deshablitado" : "Habilitado" }}
+  </p>
+  <button :disabled="idDisabled">Haz click</button>
 </template>
 
 <style scoped></style>
