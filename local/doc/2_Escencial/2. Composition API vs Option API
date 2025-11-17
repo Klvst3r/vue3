@@ -1,0 +1,94 @@
+ 2. Composition API vs Option API 
+
+
+ De acuerdo a la documentacion de Vue al inicio
+
+API Reference
+ Options | Composition
+
+
+Se refiere a las dos sintaxis que se tienen para poder escribir codigo con vue, el options api viene de sintaxis de versiones pasadas, que actualmente siguen funcionando, mientrs que la sintaxis de composition api es la sintaxis nueva y es la sitaxis a utilizar.
+
+
+En el script de vue 
+
+App.vue
+
+<script setup></script>
+
+
+
+Qel cual tiene la palabra setup y en los estilos se agrego
+
+<style scoped></style>
+
+Cuando tiene la palabra setup lo que se esta indicando es que se trabajar cn la forma abreviada de composiion api, por ejemplo
+
+Definimos una constante
+
+<script setup>
+	const {ref } = Vue;
+</script>
+
+
+
+<script setup>
+const msg = "Hola Mundo";
+</script>
+
+ahora ya se puede hacer uso de la constante en el template con {{ }}, estamos especificando la referencia de codigo js
+
+accedemos a la constante mediante la referencia {{ y la variable }}
+
+
+esto es para poder utilizar scoped, o alcance de las variables de  composition api, si lo quitamos tendriamos que especificar un JSON
+
+
+<script>
+//const msg = "Hola Klvst3r";
+
+export default {
+  setup() {
+    const msg = "Hola Klvst3r";
+    return { msg };
+  },
+};
+</script>
+
+<template>
+  <h1>{{ msg }}</h1>
+</template>
+
+<style scoped></style>
+
+
+Son mas pasos, y solo utiizamos una variable, por ello es mas facil utilizar la diectiva setup  en el scrip ahorrandonos todo esto. usando la constante con la referencia en el template quedando mejor:
+
+
+<script setup>
+const msg = "Hola Klvst3r";
+</script>
+
+<template>
+  <h1>{{ msg }}</h1>
+</template>
+
+<style scoped></style>
+
+
+
+Ahora para los estilos cuando usamos scoped podemos ir definiendo estilos
+
+h1{
+    color:red;
+}
+
+
+Pero vamosa incluir coponentes dentro de otros cmponentes, cuando eso ocurra, y no sera necesario utilizar el estilo de titulos rojos dentro de esos componentes, esos stilos solo deberan afectar solo al componente que se define, por ello la palabra scope, cuando hacemos uso por eso cuando definamos estilos en este componente, solo aectaran a este compoenente
+
+
+
+
+
+
+
