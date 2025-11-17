@@ -1,0 +1,46 @@
+Para instalar Vue hay varias formas de realizar la ainstalación
+Dentro de la pagina
+
+https://vuejs.org/guide/quick-start.html
+
+Via npm
+$ npm create vue@latest
+
+En nuestro caso eemos npm instalado y seleccionarems esta opcion. No vamos a instalar ninguna opcion de caracteristicas experimentales, po rlo que no seleccionaremos nada.
+
+npm create vue@latest
+Need to install the following packages:
+create-vue@3.18.2
+Ok to proceed? (y) y
+
+> npx
+> create-vue
+
+┌ Vue.js - The Progressive JavaScript Framework
+│
+◇ Project name (target directory):
+│ vue-project
+│
+◇ Select features to include in your project: (↑/↓ to navigate, space to select, a to toggle all, enter to confirm)
+│ none
+│
+◇ Select experimental features to include in your project: (↑/↓ to navigate, space to select, a to toggle all, enter to
+confirm)
+│ none
+│
+◇ Skip all example code and start with a blank Vue project?
+│ No
+
+Scaffolding project in /home/klvst3r/dev/js/vue3/vue-project...
+│
+└ Done. Now run:
+
+cd vue-project
+npm install
+npm run dev
+
+| Optional: Initialize Git in your project directory with:
+
+git init && git add -A && git commit -m "initial commit"
+
+klvst3r@Alienware:~/dev/js/vue3$
