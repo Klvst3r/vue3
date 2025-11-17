@@ -44,3 +44,38 @@ npm run dev
 git init && git add -A && git commit -m "initial commit"
 
 klvst3r@Alienware:~/dev/js/vue3$
+
+
+Ahora detro de la carpeta del proyecto ejecutamos:
+
+	$ npm install
+
+Para descargar las dependencias de npm para trabajar con vue
+
+Agrehara la carpeta 
+	
+	npm_modules	
+
+Ahora vamos a inicialirzar el servidor de desarrollo
+
+	$ nm run dev
+
+Inicializando el servidor de vite, para poder hacer un localhost para ingresar el project
+
+Para abrir en el navegador es cn CTRL + Click
+
+
+
+  VITE v7.2.2  ready in 1033 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  Vue DevTools: Open http://localhost:5173/__devtools__/ as a separate window
+  ➜  Vue DevTools: Press Alt(⌥)+Shift(⇧)+D in App to toggle the Vue DevTools
+  ➜  press h + enter to show help
+
+
+
+Abrimos ls url en el navehador y tendrmos nuestro promer projecto inicializado
+
+		
