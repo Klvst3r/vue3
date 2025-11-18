@@ -162,4 +162,48 @@ El objeto tiene las ciguientes poropiedades:
 
  ahora al trabajar con Objetos vue da otra forma de trabajar con objetos
 
- 
+ Al crar un unjeto reactivo ref pero dentro tenemos otro objeto y en la propiedad value le asignamos el objeto.
+
+ Pero al estar trabajando con un objeto en vez de crear el objeto reactivo y asignaerle dentro de value otro objeto podremos convertir el objeto
+
+{
+    name: 'Klvst3r',
+    lastname: 'IO',
+    age: 43
+  }
+
+
+En un objeto reactivo, sin necesidade pasar por el ref
+
+
+importamos la definicion reactive y no la referencia
+
+
+
+  import { reactive } from 'vue';
+  //let user = 0;
+
+  const user = reactive({
+    name: 'Klvst3r',
+    lastname: 'IO',
+    age: 43
+  });
+
+Al hacer esto dentro de ls metodos incrmenet o decrement ya no accedemos a la propiedad value
+
+
+  function increment(){
+       user.age++; //Objeto.value.age
+  }
+
+  function decrement(){
+    user.age--;
+   }
+
+Ahora solo accesamos a la pripiedad edad funcionando de la misma manera con on objeto reactivo
+
+
+Todo funciona correctamente, con estas dos formas de hacerlos
+
+Cuando queremos almacenar uvalores ocmo un numero yun teto podremos usar ref, pero cuando estamos rabajando con objetos es mas conveniente con reactive, para convertir el objeto en reactivo.
+

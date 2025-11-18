@@ -1,9 +1,9 @@
 <script setup>
 
-  import { ref } from 'vue';
+  import { reactive } from 'vue';
   //let user = 0;
 
-  const user = ref({
+  const user = reactive({
     name: 'Klvst3r',
     lastname: 'IO',
     age: 43
@@ -14,11 +14,11 @@
     //console.log(user);
 
     //Vamoa a modificar una propiedad del objeto
-    user.value.age++; //Objeto.value.age
+    user.age++; //Objeto.value.age
   }
 
   function decrement(){
-    user.value.age--;
+    user.age--;
     //console.log(user);
   }
 </script>
