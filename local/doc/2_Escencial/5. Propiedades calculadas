@@ -1,0 +1,63 @@
+5. Propiedades calculadas
+Las propiedades computadas son una forma de calcular valores dinámicamente en Vue 3. Vamos a utilizar las propiedades computadas para crear valores que dependen de otros datos en la aplicación, y cómo utilizarlas para mejorar el rendimiento.
+
+
+Del ajempll anterior colocamos un parrado
+Indicando si es mayor o menor de edad dependiendo del valor de la edad del usuario
+
+En interpolacion podramos usar con Js y dentro preguntar si la edad del usuario es mayor a 18, es decir la evaluación de la condicional es dentro del template pero la logica es ta en el script de js
+
+
+<template>
+  <button @click="decrement">-</button>
+  <span>{{ user.age }}</span>
+  <button @click="increment">+</button>
+
+  <p>
+    <!-- Mostrar mensaje según mayoría de edad -->
+    {{ user.age >= 18 ? 'Eres mayor de edad' : 'Eres menor de edad' }}
+  </p>
+
+
+  De repente luego se ensucia nuestro codigo, con operaciones complejas, y no necesitamos hacerlo en el template, entonces podemos utilizar las propiedades calculadas,
+
+  consiste en :
+
+  aparte de importar reactiveo activamos computed
+
+  Definimos una propiedad computada
+
+    const estado = computed(() => {
+    
+  });
+
+  se le conoce como propiedad caclulada o computada por que permite hacer calculos, en nuestro caso la edad
+
+  ahora el resultado de esta funcion, es lo que mostraremos
+
+    const estado = computed(() => {
+    return user.age >= 18 ? 'Eres mayor de edad' : 'Eres menor de edad';
+  });
+
+en la impresion del resultado solo involcamos al resultado d ela operaicon
+
+  <p>
+    <!-- Mostrar mensaje según mayoría de edad -->
+    {{ estado }}
+  </p>
+  
+
+  Lo definimos en las propiedades calculadas, al cambiar una pripiedad, se recaclula un anueva respuesta
+
+
+  A medida que se cambia se calcula el resultado.
+
+  Otra cosa de las propiedades calculadas el resualtado se almacena en cache
+
+  por ejemplo 
+
+  si hacemos referencia en la propiedad
+
+  el estado solo calcula una soa vez, solo retorna el resultado del cache, en rendimiento es muy util esto.
+
+  

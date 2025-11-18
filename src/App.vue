@@ -1,12 +1,16 @@
 <script setup>
 
-  import { reactive } from 'vue';
+  import { reactive, computed } from 'vue';
   //let user = 0;
 
   const user = reactive({
     name: 'Klvst3r',
     lastname: 'IO',
     age: 43
+  });
+
+  const estado = computed(() => {
+    return user.age >= 18 ? 'Eres mayor de edad' : 'Eres menor de edad';
   });
 
   function increment(){
@@ -27,7 +31,17 @@
   <button @click="decrement">-</button>
   <span>{{ user.age }}</span>
   <button @click="increment">+</button>
+
+  <p>
+    <!-- Mostrar mensaje según mayoría de edad -->
+    {{ estado }}
+  </p>
   
+  <!-- <p>{{ estado }}</p>
+
+  <p>{{ estado }}</p>
+
+  <p>{{ estado }}</p> -->
 </template>
  
 <style scoped>

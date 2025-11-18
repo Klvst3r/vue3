@@ -1,0 +1,174 @@
+4. Habilitar autocomletado con copilot
+
+Para que Copilot en VS Code te autocomplete expresiones como:
+
+
+{{ user.edad >= 18 ? '' }}
+
+a algo más completo como:
+{{ user.edad >= 18 ? 'Eres mayor de edad' : 'Eres menor de edad' }}
+
+
+solo necesitas darle contexto y activar el autocomplete inline. Aquí te explico lo que debes revisar y cómo lograr que Copilot te genere ese tipo de sugerencias.
+
+✅ 1. Asegúrate de que Copilot sí esté activo en tu archivo .vue
+
+En VS Code abre la paleta:
+
+Ctrl + Shift + P
+
+y ejecuta:
+
+Copilot: Enable
+
+
+Luego confirma que lo tienes activado para Vue:
+
+Copilot: Enable Completions
+
+
+2. Activa las sugerencias inline (ghost text)
+
+
+File → Preferences → Settings
+
+Busca
+copilot inline
+
+
+Activa:
+
+GitHub Copilot: Inline Suggest
+
+GitHub Copilot: Editor Completions
+
+GitHub Copilot: Enable Suggestion Notifications (opcional)
+
+También busca:
+
+editor.inlineSuggest.enabled
+
+
+Debe estar en true.
+
+✅ 3. Escribe el inicio de la expresión y espera
+
+Copilot funciona según contexto, entonces cuando pongas:
+
+{{ user.edad >= 18 ? '' }}
+
+
+borra las comillas y déjalo así:
+
+{{ user.edad >= 18 ?  }}
+
+
+Ahora presiona:
+teb
+
+o
+
+CTRL+ tab
+para pedirle sugerencias.
+
+Copilot suele completar automáticamente:
+
+{{ user.edad >= 18 ? 'Eres mayor de edad' : 'Eres menor de edad' }}
+
+
+Truco importante:
+
+Copilot es contextual, así que si quieres que siempre te genere condicionales completos, dale una pista escribiendo antes un comentario:
+
+<!-- Mostrar mensaje según mayoría de edad -->
+<p>{{ user.edad >= 18 ?  }}</p>
+
+
+¡Con esto Copilot casi siempre lo completa perfecto!
+
+Si quieres todavía más precisión…
+
+Puedes escribir:
+
+<!-- if age >=18 show "Eres mayor de edad" else "Eres menor de edad" -->
+{{ user.edad >= 18 ?  }}
+
+
+
+me indica que necesito permisos para copilot cloud agent, para copilot cli agent github copilot agents, supongo que me tengo que autenticar, para habilitar las caarcteristicas, para poder confirmar activado para Vue
+
+Sí, correcto: tienes que autenticarte y dar permisos a los nuevos “Copilot Agents”, que son necesarios para que Copilot pueda darte sugerencias más avanzadas (como completaciones inteligentes en Vue, razonamiento de código, etc.).
+
+Aquí te dejo los pasos exactos para que VS Code deje de pedir permisos y Copilot funcione al 100%:
+
+✅ 1. Inicia sesión con tu cuenta de GitHub en VS Code
+
+Ve a:Ctrl + Shift + P
+
+y escribe:
+GitHub: Sign in
+
+
+
+Si aparece un aviso de permisos, acepta.
+
+También puedes abrir directamente:
+
+👉 https://github.com/settings/copilot
+Ctrl + Shift + P
+
+
+Escribe
+Copilot: Enable Completions
+
+
+
+Te mostrará una lista de lenguajes.
+Selecciona Vue o JavaScript / TypeScript (Vue usa ambos).
+
+🔥 4. Verifica que Copilot está habilitado en tu workspace
+
+Abre:
+
+File → Preferences → Settings
+
+
+Busca
+copilot
+
+
+Asegúrate de que estén en true:
+
+GitHub Copilot: Enabled
+
+GitHub Copilot: Inline Suggest Enabled
+
+GitHub Copilot: Editor Completions Enabled
+
+🧪 5. Prueba si ya funciona
+
+En un archivo .vue, escribe:
+{{ user.edad >= 18 ?  }}
+
+
+Deberías ver la sugerencia “ghost text”:
+
+'Eres mayor de edad' : 'Eres menor de edad'
+
+
+Presiona Tab para aceptarla.
+
+❗Si aún te pide permisos…
+
+Abre la terminal en VS Code y escribe:
+
+gh auth login
+
+Selecciona GitHub.com, loguéate y dale permisos para:
+
+copilot-cli
+
+copilot-agents
+
+(Dependiendo de tu cuenta puede preguntarte explícitamente.)
+
