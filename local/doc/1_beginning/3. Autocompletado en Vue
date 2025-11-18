@@ -87,7 +87,7 @@ Y te arreglo la configuración exacta.
 En settings.json añade:
 
 
-quedando nuestro > settings.json
+quedando nuestro > settings.json - WSL
 
 
 {
@@ -111,3 +111,27 @@ quedando nuestro > settings.json
 
 Esto le dice a Emmet que trate .vue como HTML y habilita autocompletado.
 
+
+
+Para el caso de Debian quedo asi:
+
+{
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.formatOnSave": true,
+  "workbench.activityBar.location": "hidden",
+  "files.autoSave": "afterDelay",
+
+  // From WSL
+  "editor.wordWrap": "on",
+  "editor.unicodeHighlight.nonBasicASCII": false,
+
+  // Agregar aquí la configuración de Emmet
+  "emmet.includeLanguages": {
+    "vue": "html",
+    "vue-html": "html"
+  },
+
+  // Habilitar sugerencias inline (Copilot + Emmet)
+  "editor.inlineSuggest.enabled": true
+
+}
