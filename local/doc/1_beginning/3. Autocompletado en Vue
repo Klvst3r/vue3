@@ -135,3 +135,80 @@ Para el caso de Debian quedo asi:
   "editor.inlineSuggest.enabled": true
 
 }
+
+
+
+Para 
+
+Para que Vue.js te autocomplete eventos como @click="..." al escribir @onc o @cli, necesitas tener bien configurado tu entorno. Aquí te dejo las causas más comunes y cómo solucionarlo:
+
+✅ 1. Instala la extensión correcta en VS Code
+
+La extensión que habilita el autocompletado de Vue es:
+
+👉 Volar (Vue Language Features)
+
+(Reemplaza a Vetur en Vue 3)
+
+Busca en VS Code: Vue Language Features (Volar)
+
+Instálalo y reinicia VS Code.
+
+Si usas Vue 2 también puedes instalar Vetur, pero para Vue 3 es mejor Volar.
+
+✅ 2. Habilita el autocompletado de eventos
+
+Volar incluye sugerencias de eventos, pero a veces se deshabilitan.
+Revisa tu configuración en:
+
+Ctrl + Shift + P → Preferences: Open Settings (JSON)
+
+
+Agrega esto:
+
+{
+  "vue.complete.events": true
+}
+
+✅ 3. Usa la sintaxis adecuada
+
+El autocompletado salta cuando VS Code detecta que estás dentro de un template.
+
+Ejemplo:
+
+<template>
+  <button @c></button>
+</template>
+
+
+Al escribir @c debería sugerir:
+
+@click
+
+@change
+
+@contextmenu
+
+etc.
+
+✅ 4. Si no funciona, instala TypeScript Vue Plugin
+
+Este plugin mejora el autocompletado:
+
+Instala Volar.
+
+Ejecuta:
+
+Volar: Switch TS Plugin
+
+
+Elige Volar.
+
+⚠️ 5. Si usas Vetur y Vue 3, puede fallar
+
+Si tienes Vetur + Volar instalados al mismo tiempo, hay conflictos.
+
+Solución:
+
+✔️ Desinstala o deshabilita Vetur si usas Vue 3
+✔️ Deja solo Volar

@@ -4,3 +4,162 @@ Para verificar los funcamentos de reactividad se tomara un caso tipico
 
 Tomando la base del componente de App.vue
 
+Definimos una variable
+
+<script setup>
+  let count = 0;
+</script>
+
+<template>
+  
+</template>
+
+<style scoped></style>
+
+
+Definimos dos botones
+
+
+all dar click sobre los botones aumenta o disminuye el valor
+
+
+<script setup>
+  let count = 0;
+</script>
+
+<template>
+  <button>-</button>
+  <span>{{ count }}</span>
+  <button>+</button>
+  
+</template>
+
+<style scoped>
+  span{
+    padding: 0 10px;
+  }
+</style>
+
+
+Asi al hacer click incrementara o decrementara el valor de count, en el template al llamar al metodo click indicara una funcion o metodo de js, y al no tener parametros puede ir si los parentesis
+
+es correccto usar decrement() o decrement
+
+ahora necesitamos renderizar el funcionamiento
+
+  <button @click="decrement">-</button>
+  <span>{{ count }}</span>
+  <button @click="increment">+</button>
+
+  Pero no queremos que sea una impresión si no generar un objeto reactivo
+
+
+  Asi entonces para trabajar con objetos reactivos tenemos que hacr:
+
+  Importar un objeto
+
+  import { ref } from 'vue';
+
+  y no definir solamente una variable, sino que vamos a crar un objeto
+
+  Haciendo referencia a constructor del ref, definiendo un valor inicial en nuestro caso 0
+
+  ref(0);
+
+  Ahora el objeto creado, lo vamos a almacenar en una variable, pero mejor en una constante por recomendacion de vue
+
+
+    const count = ref(0);
+
+Si hacemos referencia al objeto reactivo en la plantilla, veremos el valor asignado es el valor mostrado en la plantilla, si nuesra referencia inicial fuera 1 apareceria en la plantilla el valor de 1
+
+
+
+como estamos haciendo referencia al objeto reactivo dentro del script no vamos a hacerlo de esta manera, lo que vamos a hacer es acceder al objeto reactivo, lo que interesa es modificar una de sus propiedades
+
+
+Lo mismo tanto para increment como para decrement
+
+<script setup>
+
+  import { ref } from 'vue';
+  //let count = 0;
+
+  const count = ref(0);
+
+  function increment(){
+    //count++;
+    //console.log(count);
+
+    //Vamoa a modificar una propiedad del objeto
+    count.value++;
+  }
+
+  function decrement(){
+    count.value--;
+    //console.log(count);
+  }
+</script>
+
+
+Ahora imaginemos que dentro del objeto reactivo lo que queremos es inicializar en cero sino inicializarlo con un objeto
+
+El objeto tiene las ciguientes poropiedades:
+
+  const count = ref({
+    name: 'Klvst3r',
+    lastname: 'IO',
+    age: 43
+  });
+
+
+  ahora lo que vamos a hacer es aumentar o disminuir la edad
+
+  pero para que tenga sentido, ya no vamos a utilizar el objeto count, mejor utilizamos el objeto user
+
+
+  <script setup>
+
+  import { ref } from 'vue';
+  //let user = 0;
+
+  const user = ref({
+    name: 'Klvst3r',
+    lastname: 'IO',
+    age: 43
+  });
+
+  function increment(){
+    //user++;
+    //console.log(user);
+
+    //Vamoa a modificar una propiedad del objeto
+    user.value.age++; //Objeto.value.age
+  }
+
+  function decrement(){
+    user.value.age--;
+    //console.log(user);
+  }
+</script>
+
+<template>
+  <button @click="decrement">-</button>
+  <span>{{ user.age }}</span>
+  <button @click="increment">+</button>
+  
+</template>
+
+<style scoped>
+  span{
+    padding: 0 10px;
+  }
+</style>
+ 
+
+
+ Con esto en nuestra ejecución podremos aumentar o disminuir la edad del usuario en timepo real
+
+ ahora al trabajar con Objetos vue da otra forma de trabajar con objetos
+
+ 
