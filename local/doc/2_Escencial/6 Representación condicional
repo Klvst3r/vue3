@@ -153,3 +153,47 @@ Quedando el codigo de la aplicacion finalemete:
 
 con ello ocultamos y visualizamos el contenido del titulo h1 y los parrafos
 
+De momento es factible por que tenemos tres elementos pero si tenemos mostrar/ocultar 100 etiquetas, tendremos que poner 100 veces esto, asi que otra forma de hacer sto es:
+
+Encerrando todo dentro de un div
+
+y al div le aplicamos la condicion
+
+
+  <div v-if="mostrar">
+    <h1>Hola mundo</h1>
+    <p>Parrafo 1</p>
+    <p>Parrafo 2</p>
+  </div>
+</template>
+
+
+
+El resualtado es el mismo
+
+
+Pero si no queremos agregar un div de mas en el documento, podemos hacer uso de la etiqueta template
+
+<template v-if="mostrar">
+    <h1>Hola mundo</h1>
+    <p>Parrafo 1</p>
+    <p>Parrafo 2</p>
+  </template>
+
+
+  Este es un contenedor del v-if
+
+  La diferencia es que no agrgegamos ninguna etiqueta adicional
+
+
+  Aparte del v-if tenemos la directiva v-show
+
+  no se puede aoplicar sobre template, tiene que ser sobre ua etiqueta html por ejemplo el div
+
+
+La defeencia es que lo ha ocultado con CSS
+
+Si damos mostrar qieta el estilo.
+
+
+
