@@ -33,3 +33,51 @@ Recuperamos el indice del elekento del arreglo y se lo pasamos como llave al ele
 <input type="text" v-model="name">
 
 logramosque cualquier cambie en el input lo enviamos a la funcion name
+
+
+HACEMOS NUESTRO ARRAYU REACTIVO
+<script setup>
+import { ref } from 'vue'
+
+const name = ref('')
+const paises = ref([])
+
+function save() {
+  // ejemplo: agregar name a paises
+  /* if (name.value.trim() !== '') {
+    paises.value.push(name.value)
+    name.value = '' // limpiar input
+  } */
+  //Vamosa acceder al aray paises con el metodo push, pasamos el value del objeto
+  oaises,push(name.value);
+}
+</script>
+
+<template>
+  <form @submit.prevent="save">
+    <input type="text" v-model="name">
+    <button>Guardar</button>
+  </form>  
+
+  <!-- {{ name }} -->
+
+  <p v-if="paises.length">Paises</p>
+  <ul>
+    <li v-for="(pais, index) in paises" :key="index">
+      {{ pais }}
+    </li>
+  </ul>
+</template>
+
+<style scoped></style>
+
+
+Tendremos un pewueño error por que nuestro por que paises es un ref no un array directamente por ello cambiamos a 
+
+paises.value.push(name.value); //agrtegamos un elemento
+
+Porque:
+
+ref([]) → crea un objeto reactivo que envuelve el valor real.
+
+Para modificar el array que contiene, debes acceder mediante .value.
