@@ -178,3 +178,50 @@ Tambien tenemos los modificadores de eventos
 
 
   Partamos de la limpieza de la aplicación
+
+
+
+  <template>
+
+  <div @click="console.log('Hiciste click en el div')">
+    <button>
+      Haz click
+    </button>
+  </div>
+
+
+
+
+el div va aestar en escucha de algun evento 
+
+
+<template>
+
+  <div @click="console.log('Hiciste click en el div')">
+
+    <p>Hola Mundo</p>
+    <button @click="console.log('Hiciste click en el boton')">
+      Haz click
+    </button>
+  </div>
+
+</template>
+
+La intencion es que se ejecute el evento pero que no se propague en otras etiquetas
+
+
+
+Para ello podemos utilizar el modificardor stop
+
+
+
+ <button @click.stop="console.log('Hiciste click en el boton')">
+
+
+ asi el evento no se propaga en la etiqueta padre 
+
+
+ Otro modificicador es trabajor con los formularios
+
+
+ 

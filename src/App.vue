@@ -1,37 +1,23 @@
 <script setup>
     import { ref } from 'vue';
     
-    const count = ref(0);
-
-    function increment(a, event) {
-      count.value += a;
-      console.log(event);
-    }
-
-    function decrement(a, event){
-      count.value -= a;
-
-      console.log(event);
-    }
 
 </script>
 
 <template>
-  <!-- transmitimos el evento -->
-  <button @click="decrement(2, $event)">-</button> 
 
-  <span class="count">
-    {{ count }}
-  </span>
+  <div @click="console.log('Hiciste click en el div')">
 
-  <button @click="increment(2, $event)">+</button>
- 
+    <p>Hola Mundo</p>
+    <button @click.stop="console.log('Hiciste click en el boton')">
+      Haz click
+    </button>
+  </div>
+
 </template>
 
 
 <style scoped>
-  .count{
-    margin: 0 10px;
-  }
+
 </style>
   
