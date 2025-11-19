@@ -2,18 +2,15 @@
 
   import { ref } from 'vue';
 
-  const type = ref('a');
+  const mostrar = ref(true);
   
 </script>
 
 <template>
-  <button @click="type = 'a'">A</button>
-  <button @click="type = 'b'">B</button>
-  <button @click="type = 'c'">C</button>
-
-  <p v-if="type === 'a'">A</p>
-  <p v-else-if="type ==='b'">B</p>
-  <p v-else-if="type === 'c'">C</p>
+  <button @click="mostrar = !mostrar">Mostrar / Ocultar</button>
+  <h1 v-if="mostrar">Hola mundo</h1>
+  <p v-if="mostrar">Parrafo 1</p>
+  <p v-if="mostrar">Parrafo 2</p>
 </template>
  
 <style scoped>

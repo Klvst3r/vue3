@@ -139,4 +139,17 @@ Quedando el codigo de la aplicacion finalemete:
 </style>
  
 
- 
+ Podrmoe ocultar los valores
+
+
+ <template>
+  <button @click="mostrar = !mostrar">Mostrar / Ocultar</button>
+  <h1 v-if="mostrar">Hola mundo</h1>
+  <p v-if="mostrar">Parrafo 1</p>
+  <p v-if="mostrar">Parrafo 2</p>
+</template>
+
+
+
+con ello ocultamos y visualizamos el contenido del titulo h1 y los parrafos
+
