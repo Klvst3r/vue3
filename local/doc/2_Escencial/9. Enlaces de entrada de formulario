@@ -364,3 +364,92 @@ const paises = ref(["argentina","mexico"]);
 
 Esto si queremos que en los checkbox ya queremos que tengan valores iniciales
 
+
+
+Ahor alo que haremos es acerca de los modificadores
+
+Limpiamos la aplicacion en el template
+
+definimos un objeto reactivo
+
+const name = ref();
+
+
+const name = ref();
+
+</script>
+
+<template>
+
+  <input type="text" v-model="name">
+
+</template>
+
+
+y enlazamos el elemento input con la propiedad name
+
+
+
+<script setup>
+import { ref } from 'vue'
+
+const name = ref();
+
+</script>
+
+<template>
+
+  <input type="text" v-model="name">
+  <p>
+    {{ name }}
+  </p>
+
+</template>
+
+ 
+
+
+ 
+
+<style scoped></style>
+
+
+son esto al escribir en el input se ascribe el resultado del input
+
+Pero en ocaciones no queremos que se actualizce la propiedad hasta que hayamos temrinado los escrito
+
+lo que tenemos que hacer es utilixzar el modificador .lazy
+
+Asi hasta que hayamos dado click por fuera delelemento dinput imprimira el contenido del input
+
+<input type="text" v-model.lazy="name">
+  <p>
+    {{ name }}
+  </p>
+
+
+Otro modificador es imaginemos que el usuario le solicitemos un numero, y que el usuario ha escrito un numero y queremos hacerlo es enviarlo y hacer un calculo matematico, por ejemplo perimeo que lo sume y lo muestre en consola
+
+<input type="text" v-model="numero">
+  <button @click="console.log(numero + 5)">
+    Enviar
+  </button>
+
+
+y nuestra logica es que los suma, pero vue entiende que si enviamos un valor por formulario es que se le pase es texto, pero enesste caso estamos utiliando numero, tenemos que indicarle a se transforme un numero
+
+con el modificador number
+
+
+<input type="text" v-model.number="numero">
+  <button @click="console.log(numero + 5)">
+    Enviar
+  </button>
+
+
+Esto solo es transofmracion de nuemros
+
+
+Modificador
+
+    
