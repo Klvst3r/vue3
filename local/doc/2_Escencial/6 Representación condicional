@@ -48,4 +48,95 @@ Pero no solo podremos utilizar condicionales simples, tambien podemos utilizar c
 
   <p v-else>Oh no, Vue es horrible</p>
 
-    
+  Para que esto funcione v-else debe ir inmediatamente despues de un v-if
+
+
+
+  Vue inclusive permite trabajar con condicionales anidadas.
+
+  Vamos al ejemplo
+
+
+
+  const Type = ref('a');
+  
+</script>
+
+<template>
+  <button>A</button>
+  <button>B</button>
+  <button>C</button>
+
+
+  <p>A</p>
+  <p>B</p>
+  <p>C</p>
+
+
+  La idea es la siguiente, si doy click sobre a, el valor de tye sera A, si pulsamos a B cambia el valor a B y lo mismo con C,
+
+  Primero agfregamos logica a lso botones
+
+  Mantenemos a la escucha del evento clic
+
+
+  @click=""
+
+
+<template>
+  <button @click="type = 'a'">A</button>
+  <button @click="type = 'b'">B</button>
+  <button @click="type = 'c'">C</button>
+
+  <p>A</p>
+  <p>B</p>
+  <p>C</p>
+</template>
+
+
+Le estamos asignado un acadena por ello va entre comillas
+
+
+  const Type = ref('a');
+  
+</script>
+
+<template>
+  <button @click="type = 'a'">A</button>
+  <button @click="type = 'b'">B</button>
+  <button @click="type = 'c'">C</button>
+
+  <p v-if="type=== 'a'">A</p>
+  <p v-else-if="type ==='b'">B</p>
+  <p v-else-if="type === 'c'">C</p>
+</template>
+
+La logica queda que cuando pulsamo un valor con la letra la asigna al valor de la constante
+
+
+Quedando el codigo de la aplicacion finalemete:
+
+<script setup>
+
+  import { ref } from 'vue';
+
+  const type = ref('a');
+  
+</script>
+
+<template>
+  <button @click="type = 'a'">A</button>
+  <button @click="type = 'b'">B</button>
+  <button @click="type = 'c'">C</button>
+
+  <p v-if="type === 'a'">A</p>
+  <p v-else-if="type ==='b'">B</p>
+  <p v-else-if="type === 'c'">C</p>
+</template>
+ 
+<style scoped>
+  
+</style>
+ 
+
+ 

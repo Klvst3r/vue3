@@ -2,14 +2,18 @@
 
   import { ref } from 'vue';
 
-  const awesome = ref(false);
+  const type = ref('a');
   
 </script>
 
 <template>
-  <p v-if="awesome">Vue es increible</p>
+  <button @click="type = 'a'">A</button>
+  <button @click="type = 'b'">B</button>
+  <button @click="type = 'c'">C</button>
 
-  <p v-else>Oh no, Vue es horrible</p>
+  <p v-if="type === 'a'">A</p>
+  <p v-else-if="type ==='b'">B</p>
+  <p v-else-if="type === 'c'">C</p>
 </template>
  
 <style scoped>
