@@ -1,14 +1,14 @@
 <script setup>
 import { ref } from 'vue'
 
-const numero = ref();
+const texto = ref();
 
 </script>
 
 <template>
 
-  <input type="text" v-model.number="numero">
-  <button @click="console.log(numero + 5)">
+  <input type="text" v-model.trim="texto">
+  <button @click="console.log(texto)">
     Enviar
   </button>
 
