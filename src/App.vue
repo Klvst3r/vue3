@@ -12,6 +12,7 @@ function save() {
   } */
   //Vamosa acceder al aray paises con el metodo push, pasamos el value del objeto
   paises.value.push(name.value); //agrtegamos un elemento
+  name.value = '';
 }
 </script>
 

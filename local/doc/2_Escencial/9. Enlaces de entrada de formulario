@@ -81,3 +81,7 @@ Porque:
 ref([]) → crea un objeto reactivo que envuelve el valor real.
 
 Para modificar el array que contiene, debes acceder mediante .value.
+
+Logramos agregar elementos pero la idea es que se sigan manteniento
+
+
