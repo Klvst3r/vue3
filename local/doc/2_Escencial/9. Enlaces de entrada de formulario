@@ -191,4 +191,75 @@ const numero = ref(1);
  por ejemplo un listado de paises
 
 
+ <template>
+  <div>
+    <label>
+      <input type="checkbox" value="mexico" name="paises[]">
+      México
+    </label>
+  </div>
+  <div>
+    <label>
+      <input type="checkbox" value="argentina" name="paises[]">
+      Argentina
+    </label>
+  </div>
+  <div>
+    <label>
+      <input type="checkbox" value="peru" name="paises[]">
+      Perú
+    </label>
+  </div>
+
+  {{ numero }}
+</template>
+
+
+ahora cada que se hace uncheck en el checkbos se almacenara el valor en un array paises
+
+
+definimos el array vacio
+const paises = ref([]);
+
+
+vamos a cada uno de ellos y en vez del name colocamos v-model 
+
+//Definimos el array paises
+
+const paises = ref([]);
+
+</script>
+
+<template>
+  <div>
+    <label>
+      <input type="checkbox" value="mexico" v-model="paises">
+      México
+    </label>
+  </div>
+  <div>
+    <label>
+      <input type="checkbox" value="argentina" v-model="paises">
+      Argentina
+    </label>
+  </div>
+  <div>
+    <label>
+      <input type="checkbox" value="peru" v-model="paises">
+      Perú
+    </label>
+  </div>
+
+  {{ paises }}
+  
+</template>
+ 
+
+
+ ahora a medida que seleccionemos valores vemos el aray se asigna un valor, son los valores dentro del value, y asi sucesivamente, 
+
+
+
+
+
  
