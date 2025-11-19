@@ -116,5 +116,79 @@ Definimos previamente una constantereactiva que recibira los valores referenciad
 Enlazamos el text area con la constante name
 
 
-Para el caso de input radio
+anteriormente especificabamos el atributo name
 
+
+<template>
+  <div>
+    <label>
+      <input type="radio" value="1" name="numero">
+      Uno
+    </label>
+  </div>
+  <div>
+    <label>
+      <input type="radio" value="2" name="numero">
+      Dos
+    </label>
+  </div>
+  <div>
+    <label>
+      <input type="radio" value="3" name="numero">
+      Tres
+    </label>
+  </div>
+</template>
+ 
+
+ para tener un solo valor en unconjunto de radios
+
+
+
+
+El atributo name se utiliza cuando se envia el formulario pero en este caso eso no ocurre se envia y necesitamos enlzazarlo con alguna propiedad del setpup
+
+
+Para ello definimos unobjeto reactivo llamado numero y su vlaor inicial es 1
+
+const numero = ref(1);
+
+const numero = ref(1);
+
+</script>
+
+<template>
+  <div>
+    <label>
+      <input v-model="numero" type="radio" value="1">
+      Uno
+    </label>
+  </div>
+  <div>
+    <label>
+      <input v-model="numero" type="radio" value="2">
+      Dos
+    </label>
+  </div>
+  <div>
+    <label>
+      <input v-model="numero" type="radio" value="3">
+      Tres
+    </label>
+  </div>
+
+  {{ numero }}
+</template>
+ 
+
+ Si cmabiamos de radio el valor del valor cambiara
+
+
+ Ahora si no estamos onc unput radio sino checkbox
+
+ podemos seleccionar varios elementos
+
+ por ejemplo un listado de paises
+
+
+ 
