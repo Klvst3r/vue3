@@ -3,35 +3,27 @@ import { ref } from 'vue'
 
 const numero = ref(1);
 
-//Definimos el array paises
+//Definimos el valor en una cadena vacia
 
-const paises = ref([]);
+const pais = ref('');
 
 </script>
 
 <template>
-  <div>
-    <label>
-      <input type="checkbox" value="mexico" v-model="paises">
-      México
-    </label>
-  </div>
-  <div>
-    <label>
-      <input type="checkbox" value="argentina" v-model="paises">
-      Argentina
-    </label>
-  </div>
-  <div>
-    <label>
-      <input type="checkbox" value="peru" v-model="paises">
-      Perú
-    </label>
-  </div>
+<select v-model="pais">
+  <option value="">Seleccione un pais</option>
+  <option value="mexico">México</option>
+  <option value="brazil">brazil</option>
+  <option value="colombia">Colombia</option>
+  </select>
 
-  {{ paises }}
-  
+  <p>
+    {{ pais }}
+  </p>
+
 </template>
+
+
  
 
 <style scoped></style>
