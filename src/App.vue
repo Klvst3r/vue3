@@ -1,16 +1,16 @@
 <script setup>
-    function enviar(){
-      console.log ("Enviando formulario");
-    }
+    
     
 </script>
 
 <template>
 
-  <form @submit.prevent="enviar" >
-    <button>Enviar</button>
-  </form>
-
+<div @click.self="console.log('Hiciste click en el div')">
+  
+    Hola mundo
+  
+  <button @click="console.log('Hiciste click en el boton')">Haz click</button>
+</div>
 </template>
 
 

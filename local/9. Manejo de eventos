@@ -268,4 +268,40 @@ Asi si tenemos
   Con esto y desde este metodo realicemos una accion y actualizacemos el contenido de la pagina
 
 
+
+  <script setup>
+    
+    
+<script setup>
+    
+    
+</script>
+
+<template>
+
+<div @click.self="console.log('Hiciste click en el div')">
+  
+    Hola mundo
+  
+  <button @click="console.log('Hiciste click en el boton')">Haz click</button>
+</div>
+</template>
+
+
+<style scoped>
+
+</style>
+  
+
+
+  Nos dirigimos al elemento div
+
+  con esto al hacer click en el boton me sale el mensaje y no ejecuta dentro del div. Lo que ocurre .self solo va a ejecutar el evento cuando hagamos clcick sobre el elemento en otros casos no aplica
+
+
+
+  Si se hiviera colocado dentro de una etiqueta p no habira funcionado por que teniamos un elemtno hijo
+
+
+
   
