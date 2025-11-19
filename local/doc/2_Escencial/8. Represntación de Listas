@@ -187,3 +187,23 @@ quedando:
 
 
 
+Nuestra lista es estatica, pero las listas seran dinamica con mas regitrso elimnados o editados y la variable va a cambiar
+
+
+Vue puede que no muestre correctamente al segumiento de la información, para ello, vue pide que cuando utilicemos bucles le agreguemos una llave, a los elementos que se estan generando.
+
+quedando
+
+Asegurando que cada li se muestre con el contenido correcto
+
+<li v-if="user.id > 2" :key="isReactive.id">
+
+Asi el codigo anterior podria reconocer el objeto con el id nombre
+
+<li v-for="user in users" :key="user.id > 2">
+
+        {{ user.id }} - {{ user.name }}
+
+      </li> 
+
+

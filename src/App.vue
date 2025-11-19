@@ -39,7 +39,7 @@
 
       </li> -->
       <template v-for="user in users">
-        <li v-if="user.id > 2">
+        <li v-if="user.id > 2" :key="isReactive.id">
           {{ user.id }} - {{ user.name }}
         </li>
 
