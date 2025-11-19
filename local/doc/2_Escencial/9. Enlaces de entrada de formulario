@@ -1,0 +1,35 @@
+9. Enlaces de entrada de formulario
+
+
+v-model es una directiva de Vue 3 que permite crear enlaces bidireccionales entre los datos y la interfaz de usuario. Vamos a utilizar v-model para crear formularios y otros elementos interactivos en tu aplicación.
+
+Vamos a trabajar conformularios
+
+Vamos a definir un array paises
+Definiendo un formulario con un input y unboton debajo un a etiquta que mostrara los paises en una lista y el listado del pais
+
+
+Recuperamos el indice del elekento del arreglo y se lo pasamos como llave al elemento
+
+
+ <li v-for="(pais, index) in paises" :key="index">
+
+
+  Se mostrara solo en caso de que por lo menos tengamos un pais
+
+  <p v-if="paises.length">Paises</p>
+
+  si paises.lenght es = 0 en booleano es falso po lo tanto no se mostraria esta etiqueta
+
+
+  Asi que vamos en el formulario a estar en escucha del ebento submit y se evita el envie del formulario, y en lugar d eello se ejecuta la funcion save
+
+  <form @submit.prevent="save">
+
+  definimos un objeto reactivo y por lo tanto hay que importar la directiva reactiva de vue
+
+  para despues enlacarlo con el objeto reactivo con la directiva v-model
+
+<input type="text" v-model="name">
+
+logramosque cualquier cambie en el input lo enviamos a la funcion name

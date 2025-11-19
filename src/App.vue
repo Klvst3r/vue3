@@ -1,15 +1,32 @@
 <script setup>
-    import { ref } from 'vue';
-    
+import { ref } from 'vue'
+
+const name = ref('')
+const paises = ref([])
+
+function save() {
+  // ejemplo: agregar name a paises
+  if (name.value.trim() !== '') {
+    paises.value.push(name.value)
+    name.value = '' // limpiar input
+  }
+}
 </script>
 
 <template>
-  <input type="text" @keyup.enter="console.log=('Haz presionado una tecla')">
+  <form @submit.prevent="save">
+    <input type="text" v-model="name">
+    <button>Guardar</button>
+  </form>  
 
+  {{ name }}
+
+  <p v-if="paises.length">Paises</p>
+  <ul>
+    <li v-for="(pais, index) in paises" :key="index">
+      {{ pais }}
+    </li>
+  </ul>
 </template>
 
-
-<style scoped>
-
-</style>
-  
+<style scoped></style>
