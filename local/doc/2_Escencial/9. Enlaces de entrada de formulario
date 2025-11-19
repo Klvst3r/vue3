@@ -322,3 +322,45 @@ const pais = ref('');
 
 
 En el ejemplo de paises con los checkboses
+
+
+const paises = ref([]);
+
+</script>
+
+<template>
+  <div>
+    <label>
+      <input type="checkbox" value="mexico" v-model="paises">
+      México
+    </label>
+  </div>
+  <div>
+    <label>
+      <input type="checkbox" value="argentina" v-model="paises">
+      Argentina
+    </label>
+  </div>
+  <div>
+    <label>
+      <input type="checkbox" value="peru" v-model="paises">
+      Perú
+    </label>
+  </div>
+
+  {{ paises }}
+  
+</template>
+ 
+pero si tuviera un valor inicial, justamente el valor repetido, estaria marcado por defecto
+
+
+const paises = ref(["mexico"]);
+
+o 
+
+const paises = ref(["argentina","mexico"]);
+
+
+Esto si queremos que en los checkbox ya queremos que tengan valores iniciales
+
