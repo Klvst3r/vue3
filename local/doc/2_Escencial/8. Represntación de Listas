@@ -58,4 +58,132 @@ Recuperemos contenido e indice
       {{ index }} - {{ user }}</li>
     </ul>
 
-    
+
+Ahora tenemos una colección de elementos
+
+
+//Colección de objetos
+{
+  'id': 1,
+  'name': 'John Doe',
+  },
+  {
+  'id': 2,
+  'name': 'Jane Smith',
+  },
+  {
+  'id': 3,
+  'name': 'Alice Johnson',
+  },
+  {
+  'id': 4,
+  'name': 'Bob Brown',
+  },
+  {
+  'id': 5,
+  'name': 'Charlie Black',
+  }
+
+La idea es iterar entre los elementos
+
+
+    <ul>
+      <li v-for="user in users">
+        {{ user.id }} - {{ user.name }}
+
+      </li>
+        
+      </ul>
+
+Si queremos destructurrar solo queremos id o nombre como variables separadas
+
+
+<li v-for="{id, name} in users">
+        {{ user.id }} - {{ user.name }}
+
+      </li>
+
+Con esto estamos recibiendo cada uno de estos objetos de manera destructurada con dos variables id y name
+
+
+ahora podemos hacer refertencia a la variable id, y a la variable name
+
+
+cuando utilizamos la destructuración podemos recuperar el indice,             
+
+<li v-for="({id, name}, index) in users">
+
+de esta manera podemos recupearr el indice
+
+
+//Colección de objetos
+{
+  'id': 1,
+  'name': 'John Doe',
+  },
+  {
+  'id': 2,
+  'name': 'Jane Smith',
+  },
+  {
+  'id': 3,
+  'name': 'Alice Johnson',
+  },
+  {
+  'id': 4,
+  'name': 'Bob Brown',
+  },
+  {
+  'id': 5,
+  'name': 'Charlie Black',
+  }
+];
+</script>
+
+<template>
+    <ul>
+      <li v-for="({id, name}, index) in users">
+        {{ id }} -{{ name }}  ({{ index }})
+
+      </li>
+        
+      </ul>
+</template>
+
+
+
+Regresando a la estructura inicial,
+
+ <ul>
+      <li v-for="user in users">
+        {{ user.id }} - {{ user.name }}
+
+      </li>
+        
+      </ul>
+
+Habra casos en los cuales vamos a querer utilizar tanto bucles como condicionales, por ejemplo mostrar solo los usuarios cuyo id sea > 2
+
+Para ello hacemos uso de la etiqueta template par apoder hacruso del v-for y dentro un aocndicional
+
+quedando:
+
+<template>
+ <ul>
+      <!-- <li v-for="user in users" v-if="user.id > 2">
+
+        {{ user.id }} - {{ user.name }}
+
+      </li> -->
+      <template v-for="user in users">
+        <li v-if="user.id > 2">
+          {{ user.id }} - {{ user.name }}
+        </li>
+
+      </template>
+        
+      </ul>
+</template>
+
+
+
