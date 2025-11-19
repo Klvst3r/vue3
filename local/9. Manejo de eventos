@@ -1,0 +1,180 @@
+9. Manejo de eventos
+
+Los eventos y los métodos son una parte esencial de la programación en Vue 3.Veremos como utilizar los eventos para crear interactividad en tu aplicación y cómo definir y utilizar métodos.
+
+
+Partimos de nuesrtra aplicación limpia
+
+<script setup>
+
+</script>
+
+<template>
+ 
+</template>
+
+
+<style scoped>
+
+</style>
+  
+
+ Creamos un objeto reactivo inicializando un contador y en el template dos botones y un elemento span con estilos
+
+ <script setup>
+    import {ref} from 'vue';
+    const count = 0;
+</script>
+
+<template>
+  <button>-</button>
+
+  <span class="count">
+    {{ count }}
+  </span>
+
+  <button>+</button>
+ 
+</template>
+
+
+<style scoped>
+  .count{
+    margin: 0 10px;
+  }
+</style>
+  
+
+Asi cuando queriamso que una determinada etiqueta escuchara un evento, teniamos que dirigirnos a los valores del boton y colocar v-on con el evento que queremos escuchar
+
+
+
+
+<button v-on:="click">-</button>
+
+o la forma abreviada
+
+
+<button @click="">-</button>
+
+paraescuchar al evento clcik
+
+Manejadores en linea y manejadores de eventos
+
+por ejemplo
+
+
+disminuyendo en uno el valor de una propiedad
+
+
+<button @click="count--">-</button>
+
+y podria hacer lo mismo en el segundo boton
+
+y podremos hacerlo tambien con manejadores de eventos
+
+<script setup>
+    import { ref } from 'vue';
+    const count = ref(0);
+</script>
+
+<template>
+  <button @click="count--">-</button>
+
+  <span class="count">
+    {{ count }}
+  </span>
+
+  <button @click="count++">+</button>
+ 
+</template>
+
+
+<style scoped>
+  .count{
+    margin: 0 10px;
+  }
+</style>
+  
+
+Manejadores de eventos, dentro del script stup encagarse un metodo que incremente o decremenbte
+  Para ello 
+
+
+  const increment = () => {
+      count.value++;
+    }
+
+
+consiste dentro del script septup escribir el metodo que se encague de esta sección, por ejemplo incrementar o decrementar
+la asignamos una funcion callback    
+
+
+Al asignaer los metodos los tenemos aque asignar en el template
+
+
+<template>
+  <button @click="decrement">-</button>
+
+  <span class="count">
+    {{ count }}
+  </span>
+
+  <button @click="increment">+</button>
+ 
+</template>
+
+
+hacemos referencia al ombre sin parametros por ello no llevan parentesis
+
+los manejadores son por metodos, 
+
+
+Pero si queremos pasar parametros, y en cada metodo indicamos que recibimos metoos
+
+Pasarle el parametro 
+
+
+<script setup>
+    import { ref } from 'vue';
+    
+    const count = ref(0);
+
+    function increment(a, event) {
+      count.value += a;
+      console.log(event);
+    }
+
+    function decrement(a, event){
+      count.value -= a;
+
+      console.log(event);
+    }
+
+</script>
+
+<template>
+  <!-- transmitimos el evento -->
+  <button @click="decrement(2, $event)">-</button> 
+
+  <span class="count">
+    {{ count }}
+  </span>
+
+  <button @click="increment(2, $event)">+</button>
+ 
+</template>
+
+
+<style scoped>
+  .count{
+    margin: 0 10px;
+  }
+</style>
+  
+
+
+Tambien tenemos los modificadores de eventos
+
+
+  Partamos de la limpieza de la aplicación
