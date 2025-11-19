@@ -1,18 +1,15 @@
 <script setup>
-    import { ref } from 'vue';
+    function enviar(){
+      console.log ("Enviando formulario");
+    }
     
-
 </script>
 
 <template>
 
-  <div @click="console.log('Hiciste click en el div')">
-
-    <p>Hola Mundo</p>
-    <button @click.stop="console.log('Hiciste click en el boton')">
-      Haz click
-    </button>
-  </div>
+  <form @submit.prevent="enviar" >
+    <button>Enviar</button>
+  </form>
 
 </template>
 

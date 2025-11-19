@@ -224,4 +224,48 @@ Para ello podemos utilizar el modificardor stop
  Otro modificicador es trabajor con los formularios
 
 
- 
+ Cuando tenemos un formulario y un boton
+
+
+   <form action="">
+    <button>Enviar</button>
+  </form>
+
+
+y haceecmos click sobre el boton sucede una recarga del formulario y d ela pagina en si
+
+Por que es el comportamiento por defautl del formulario enviando hacia la ruta, pero al no tener una ruta dirige ahacia la misma pagina, pero pierde el sentido de vue, por que vamos a trabajar con una SPA, entonces lo comun, al trbajar con vue y los formularios entonces al darle click al boton, lo que deberia ocurrir, en el script se ejecutaria una acción.
+
+
+Crear un usuario, realizar una busqueda sin recargar la pagina, y actualizar la información.
+
+Entonces podremos trabajr con eventos
+
+
+Queremos que el formulario este a la escucha del evento submit
+
+<form @submit="" action="">
+
+
+Asi si tenemos
+
+  <form @submit="enviar" >
+    <button>Enviar</button>
+  </form>
+
+
+  La pagina despues de enviarse el formulario, la pagina seguira renderizando, con esto lo unico que hemos dicho cda envio es ejecutar el metodo enviar, pero la intencion es no enviar el formualrio sino ejecutar el console.log
+
+
+  Asi qyue podemos utilizar el modificar prevent
+
+  <form @submit.prevent="enviar" >
+
+  Al ejecutar el modificador prevent
+
+  Evitamos que se envie el formulario y evitamos que se ejecute el metodo enviado
+
+  Con esto y desde este metodo realicemos una accion y actualizacemos el contenido de la pagina
+
+
+  
