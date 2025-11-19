@@ -1,0 +1,51 @@
+6 Representación condicional
+Las directivas v-if, v-else, v-if-else y v-show son herramientas poderosas para crear elementos condicionales en Vue 3. Aprenderemos a utilizar estas directivas para crear elementos que sólo se muestran bajo ciertas condiciones.
+
+Vamos aaplicar condicionales
+
+
+Partmos de nuestra apliacion limpia
+
+<script setup>
+
+  import { reactive } from 'vue';
+  
+</script>
+
+<template>
+  
+</template>
+ 
+<style scoped>
+  
+</style>
+ 
+
+Como vamos a utilizar objetos reactivos dejamos la ref ref
+
+import { ref} from 'vue';
+
+Queremo que la leyenda se muesrta solo caudo la variable
+
+const awesome = ref(true);
+
+
+<template>
+  <p>Vue es increible</p>
+</template>
+
+
+Para ello la directiva v-if 
+
+tenemos
+  <p v-if="awesome">Vue es increible</p>
+
+Mostrandose si el valor de awesome es verdadero.
+
+Pero no solo podremos utilizar condicionales simples, tambien podemos utilizar condicionales dobles.
+
+  <p v-if="awesome">Vue es increible</p>
+
+  <p v-else>Oh no, Vue es horrible</p>
+
+    
