@@ -85,3 +85,36 @@ Para modificar el array que contiene, debes acceder mediante .value.
 Logramos agregar elementos pero la idea es que se sigan manteniento
 
 
+Tenemos el tema de entrada con inputs no solo podemos enlazarlo con inputs sino cualquier elemento del formulario
+
+radio, checkbos, select, por ejemplo 
+
+vamo s a enlazarlo con un textarea
+
+
+ahora todo lo que escribmamos se visualizara
+
+
+<script setup>
+import { ref } from 'vue'
+
+const name = ref('');
+
+</script>
+
+<template>
+ <textarea v-model="name"></textarea>
+ <p>{{ name }}</p>
+</template>
+
+<style scoped></style>
+
+
+
+Definimos previamente una constantereactiva que recibira los valores referenciados por v-model
+
+Enlazamos el text area con la constante name
+
+
+Para el caso de input radio
+
