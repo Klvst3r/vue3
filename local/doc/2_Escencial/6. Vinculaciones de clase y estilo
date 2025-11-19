@@ -1,0 +1,181 @@
+Vinculaciones de clase y estilo
+v-bind es una directiva de Vue 3 que permite enlazar dinámicamente propiedades de un elemento con los datos de la aplicación.Vamos  a utilizar v-bind para crear elementos interactivos y dinámicos.
+
+Iniciamos con un apalicación limpia solamente importando ref, y computed en la importacion 
+
+
+<script setup>
+
+import { ref, computed} from 'vue';
+  
+</script>
+
+<template>
+  
+</template>
+ 
+<style scoped>
+
+</style>
+ 
+
+ Vamos a colocar un boton pintar y un parrafo con texto  <button>
+    Pintar
+  </button>
+
+  <p>
+    Hola Mundo
+  </p>
+  
+
+
+  En los etilos si aplicamos unbg-red a un elemento apliquemos el rojo
+
+  Al hacer click sobre el boton el parrafo se pinta en rojo y si hacemos click deje de estar rojo
+
+  inicializamos creando un objeto falso con un areferencia en valor falso
+
+  const pinytar = ref (false)
+
+  Anteriormente podriamos hacer referencias dinamicas con v-bind
+
+  Agregamos en un objeto un aclase dinamica bg-red, y si lo colocamos dentro de un objeto, lo que espera es que despues de esto debe esperar un valor booleano.
+
+
+<template>
+  <button>Pintar</button>
+  <p :class="{
+    'bg-red' : false,
+  }">Hola Mundo</p>
+ 
+</template>
+ 
+<style scoped>
+.bg-red{
+  background-color: red;
+}
+</style>
+ 
+
+
+podriamoscambiar a la clase bgred un valor verdadero o falo, y esto cambiara el color del elemento de manera dinamica
+
+Pero ocomo tenemos la variable pintar, a esa variable le podemos asignar el valor
+
+Asi al hacer cada vez que hacemos click sobre el boton, entonces llmaamos al evento click, cambiamos el valor de pintar, por lo contrario.
+
+es decir si esta en true pasa a false o viceversa
+
+
+<button @click="pintar = !pintar">Pintar</button>
+
+con esto cada vez que hagamos click cambiara al valor contrario
+
+
+cone sto
+
+<script setup>
+
+import { ref, computed} from 'vue';
+
+const pintar = ref (false)
+  
+</script>
+
+<template>
+  <button @click="pintar = !pintar">Pintar</button>
+  <p :class="{
+    'bg-red' : pintar,
+  }">Hola Mundo</p>
+ 
+</template>
+ 
+<style scoped>
+.bg-red{
+  background-color: red;
+}
+</style>
+ 
+
+pintamos y ocultamos los estilos
+
+
+Podriamos tambiar trabajar con valores ternarios
+
+
+veamos que cambiaria
+
+  <p :class="[pintar ? 'bg-red' : '']">
+    Hola Mundo
+    </p>
+
+
+
+dando el mismo resultado, por que si no es uno entonces podria utilizar otra cosa
+
+Codigo completo con valores ternarios:
+
+<script setup>
+
+import { ref, computed} from 'vue';
+
+const pintar = ref (false)
+  
+</script>
+
+<template>
+  <button @click="pintar = !pintar">Pintar</button>
+  
+  <p :class="[pintar ? 'bg-red' : '']">
+    Hola Mundo
+    </p>
+ 
+</template>
+ 
+<style scoped>
+.bg-red{
+  background-color: red;
+}
+</style>
+ 
+
+ Para poder escoger alguna otra opcion
+
+
+ <template>
+  <button @click="pintar = !pintar">Pintar</button>
+  
+  <p :class="[pintar ? 'bg-red' : 'bg-blue']">
+    Hola Mundo
+    </p>
+ 
+</template>
+ 
+<style scoped>
+.bg-red{
+  background-color: red;
+}
+
+.bg-blue{
+  background-color: blue;
+}
+
+</style>
+ 
+
+ ahora, el array generalmente se da cuando hay mas de una clase, por ejemplo, cuando definimos una clase mas
+
+  <p :class="[pintar ? 'bg-red' : 'bg-blue','text-white']">
+    Hola Mundo
+    </p>
+
+ya hora tendriamos dos clases que se  asuignan, con un aclase fija, cualquier reultado siempre tendra por defautl el valor definido 
+
+se puede asignar dos clases, de la siguiente manera
+
+
+<p :class="['bg-red', 'bg-blue']">
+
+La idea es agregar logica y sentido del v-bind.
+
+

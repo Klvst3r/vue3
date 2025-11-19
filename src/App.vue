@@ -1,23 +1,33 @@
 <script setup>
 
-  import { ref } from 'vue';
+import { ref, computed} from 'vue';
 
-  const mostrar = ref(true);
+const pintar = ref (false)
   
 </script>
 
 <template>
-  <button @click="mostrar = !mostrar">Mostrar / Ocultar</button>
-
-  <div v-show="mostrar">
-    <h1>Hola mundo</h1>
-    <p>Parrafo 1</p>
-    <p>Parrafo 2</p>
-  </div>
+  <button @click="pintar = !pintar">Pintar</button>
+  
+  <p :class="[pintar ? 'bg-red' : 'bg-blue','text-white']">
+    Hola Mundo
+    </p>
+ 
 </template>
 
  
 <style scoped>
-  
+.bg-red{
+  background-color: red;
+}
+
+.bg-blue{
+  background-color: blue;
+}
+
+.text-white{
+  color:white;
+}
+
 </style>
   
