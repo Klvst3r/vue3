@@ -1,33 +1,23 @@
 <script setup>
-
-import { ref, computed} from 'vue';
-
-const pintar = ref (false)
   
+  let users = [
+    'John Doe',
+    'Jane Smith',
+    'Alice Johnson',
+    'Bob Brown',
+    'Charlie Black',
+  ]
 </script>
 
 <template>
-  <button @click="pintar = !pintar">Pintar</button>
-  
-  <p :class="[pintar ? 'bg-red' : 'bg-blue','text-white']">
-    Hola Mundo
-    </p>
- 
+    <ul>
+      <li v-for="(user, index) in users">
+        {{ index }} - {{ user }}</li>
+      </ul>
 </template>
 
- 
+
 <style scoped>
-.bg-red{
-  background-color: red;
-}
-
-.bg-blue{
-  background-color: blue;
-}
-
-.text-white{
-  color:white;
-}
 
 </style>
   

@@ -1,0 +1,61 @@
+8. Represntación de Listas
+
+v-for es una directiva de Vue 3 que permite iterar sobre una lista de elementos y renderizarlos en la interfaz de usuario. Vamosa utilizar v-for para crear listas dinámicas y otros elementos iterativos.
+
+
+Partimos de una app limpia
+
+
+<script setup>
+  
+</script>
+
+<template>
+
+</template>
+
+
+<style scoped>
+
+</style>
+
+
+Vamos aver como mostrar el contenido de un array
+
+  let users = [
+    'John Doe',
+    'Jane Smith',
+    'Alice Johnson',
+    'Bob Brown',
+    'Charlie Black',
+  ]
+
+Si hacemos interpolación podremos entornrar el siguiente resultado
+
+
+[ "John Doe", "Jane Smith", "Alice Johnson", "Bob Brown", "Charlie Black" ]
+
+de esto en el template
+  {{ users }}
+
+Normalmente es mostrarlo en una lista
+
+  para v-for debemos pasar dos parametros, el array a recorrer y una variable donde se va almacenado el contenido da cada iteracipon
+  <li v-for="user in users"></li>
+
+    <ul>
+    <li v-for="user in users">
+      {{ user }}</li>
+    </ul>
+
+La directiva no solo permite  recuperar el contenido del array sino tambien el indice de los elementos
+
+
+Recuperemos contenido e indice
+
+  <ul>
+    <li v-for="(user, index) in users">
+      {{ index }} - {{ user }}</li>
+    </ul>
+
+    
