@@ -1,16 +1,11 @@
 <script setup>
-    
+    import { ref } from 'vue';
     
 </script>
 
 <template>
+  <input type="text" @keyup.enter="console.log=('Haz presionado una tecla')">
 
-<div @click.self="console.log('Hiciste click en el div')">
-  
-    Hola mundo
-  
-  <button @click="console.log('Hiciste click en el boton')">Haz click</button>
-</div>
 </template>
 
 

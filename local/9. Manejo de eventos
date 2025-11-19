@@ -304,4 +304,60 @@ Asi si tenemos
 
 
 
+  Regresamos a nuestra aplicacion limpia
+
+  <script setup>
+    
+    
+</script>
+
+<template>
+
+</template>
+
+
+<style scoped>
+
+</style>
   
+
+
+
+  Ejecutar un evtno cada que pulsemos una tecla
+
+
+
+  tenemos el modificador enter 
+
+  <input type="text" @keyup.enter="console.log=('Haz presionado una tecla')">
+  y hasta haber presionado la tecla enter nos enviara el mensaje
+
+
+  Tenemos el modificador tab, delete, esc, space, up, down, left, tight, inclusive podemos hacer convinaciones
+
+  por ejemplo ejecutar un evento unicamente si hacemos la combinacion de teclas alt + enter
+
+<input type="text" @keyup.alt.ent="console.log=('Haz presionado ALT + ENTER')">
+
+podemos utilizar CTRL + Enter
+
+
+<input type="text" @keyup.ctrol.enter="console.log=('Haz presionado una tecla')">
+
+
+SHOTF+Enter
+
+
+Space
+
+
+esc
+
+Delete
+
+incuso letras
+
+
+shift + A
+
+<input type="text" @keyup.shift-a="console.log=('Haz presionado una tecla')">
