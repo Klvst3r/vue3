@@ -309,3 +309,26 @@ Este tipo de registro se le conoce como registro globales.
 
 normalmente nosotros regisraos nuestro componente, de manera local
 
+createApp(App).mount('#app')
+
+
+se menciona por si es necesario registraro d emanera local o de manera global
+
+De aceurdo a la docuknetacion oficial la forma de como debemos nombrar a anuestro componente es: 
+
+Siguinedo la sintaxis siguiente:
+
+Pascal Case la primera letra en mayuscula
+
+
+  <MyComponent />
+
+
+Comonentes con dos palabras, por que los vamos a llmar de la forma como si utilizaramos una etiqueta.
+
+
+Los componentes son como una isla, es decir lque lo que le afecta a uno no afecta a otro.
+
+Por ejemplo.
+
+  

@@ -5,7 +5,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 //Importacion de la tercera forma
-import MyComponent from './components/MyComponent.vue'
+//import MyComponent from './components/MyComponent.vue'
 
 //Primera forma de registrar comonentes
 
@@ -19,6 +19,8 @@ import MyComponent from './components/MyComponent.vue'
 
 //Tercera forma de registrar componnetes, incorporamos el coponente en la variable
 
-createApp(App)
-  .component('MyComponent', MyComponent) //Este segundo hace referencia de ocmo lo estoy recibiendo
-  .mount('#app')
+//Este segundo hace referencia de ocmo lo estoy recibiendo
+//createApp(App).component('MyComponent', MyComponent).mount('#app')
+
+//Registro Local
+createApp(App).mount('#app')

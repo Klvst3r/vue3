@@ -1,6 +1,6 @@
 <script setup>
 // 1. Importar el componente que acabas de crear
-//import MyComponent from './components/MyComponent.vue'
+import MyComponent from './components/MyComponent.vue'
 </script>
 
 <template>
