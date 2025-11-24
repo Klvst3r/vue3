@@ -1,18 +1,22 @@
 <script setup>
-import { ref } from 'vue'
-
-const texto = ref();
+// 1. Importar el componente que acabas de crear
+import MyComponent from './components/MyComponent.vue'
 
 </script>
 
 <template>
 
-  <input type="text" v-model.trim="texto">
-  <button @click="console.log(texto)">
-    Enviar
-  </button>
+  <h1>Mi Aplicación Vue 3</h1>
+  
+  <MyComponent />
+  
+  <p>El código de arriba es el componente importado.</p>
+
+  
 
 
 </template>
-
+h1 {
+  color: #42b883;
+}
 <style scoped></style>

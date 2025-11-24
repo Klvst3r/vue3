@@ -1,0 +1,202 @@
+1. Registro
+
+
+Hasta el momento se ha estadotrabajando en un unico componente.
+
+
+en el componente app.vue
+
+ Lo normal cuando se trabaja en un aaplicación es no trabajar en un unico componente, sino que se creen varios componentes
+
+ Veremos como crear componentes.
+
+ Los componentes son una de las características más poderosas de Vue 3, ya que permiten crear elementos reutilizables y modularizar la aplicación. Vamos a crear componentes y cómo utilizarlos en tu aplicación.
+
+ Cuando instalamos la aplicación, la app vino con dos componentes creados, 
+
+ 1- helloworld.vue
+ 2. theWelcome.vue
+ 3. WelcomeItem.vue
+
+ Si abrimos apreciamos que tienen sus propios templates, estilos y scripts.
+
+ Si bien es ciettos tenemos componentes, pero solo sirvireon para mostrar la pagina de inicio de vue.
+
+ Vamos a reemplazar este contenido y crear nuestro propio componente
+
+ Por Ejemplo, nos vamos a dirigir a componentes 
+y crear un nuevo archivo.
+
+Creamos nuestro componente dentro de la carpeta src
+
+Aunque nuestra estructura incial no contiene una carpeta de ocmponentes es conveniente crarla para nuestros componentes personalizados.
+
+Estructura de Proyecto con Vue 3 (Vite)
+La estructura que obtienes al crear un proyecto con las herramientas modernas de Vue (principalmente Vite) es más simplificada, lo cual es una ventaja:
+
+/src: El directorio principal de tu código fuente.
+
+/src/assets: Contiene archivos estáticos (imágenes, fuentes, CSS global como main.css).
+
+/src/App.vue: El componente raíz de tu aplicación.
+
+/src/main.js (o main.ts): El archivo de entrada que monta la aplicación Vue en el DOM.
+
+/index.html: Se ubica en la raíz del proyecto. En un proyecto moderno basado en Vite, este actúa como el punto de entrada de la aplicación, ya que Vite lo utiliza para inyectar el código de tu aplicación.
+
+
+Aunque la herramienta de scaffolding (como Vite) no la crea automáticamente de inicio, la mejor práctica en la comunidad Vue es organizar tu código de la siguiente manera:
+
+Crea la Carpeta: Dentro de /src, crea una nueva carpeta llamada components.
+
+Ruta: /src/components
+
+Uso: Todos los componentes reutilizables y de propósito general (botones, tarjetas, headers, etc.) deben ir en esta carpeta.
+
+Componentes de Vistas/Páginas: A medida que tu aplicación crezca, también se recomienda crear una carpeta separada, a menudo llamada /src/views o /src/pages, para los componentes que representan una página o ruta completa de tu aplicación (por ejemplo, Home.vue, About.vue).
+
+Ejemplo de cómo debería quedar tu estructura recomendada:
+mi-proyecto/
+├── node_modules/
+├── public/
+├── src/
+│   ├── assets/
+│   │   └── main.css
+│   ├── components/  <-- ¡AQUÍ VAN TUS COMPONENTES PERSONALIZADOS!
+│   │   └── MyButton.vue
+│   ├── views/       <-- (Opcional, para las páginas)
+│   │   └── HomePage.vue
+│   ├── App.vue
+│   └── main.js
+├── index.html
+├── package.json
+└── ...
+Conclusión: La estructura inicial que tienes está correcta para funcionar, pero para mantener el orden y la escalabilidad, crear la carpeta /src/components es el paso siguiente y es la práctica recomendada para cualquier proyecto de Vue, sin importar su tamaño inicial.
+
+
+Para visualizar mejor su fucnionamiento crearemos un ejemplo de funcionamiento.
+
+el archivo index.html siempre es el único punto de entrada de la aplicación, independientemente de cuántos componentes o vistas tengas.
+
+1. La Arquitectura de un Proyecto Vue
+Primero, asegúrate de tener la carpeta components dentro de src:
+
+mi-proyecto/
+├── src/
+│   ├── assets/
+│   ├── components/  <-- ¡Carpeta creada!
+│   ├── App.vue
+│   └── main.js
+└── index.html
+2. Crear el Componente (MyComponent.vue)
+Crea un archivo llamado MyComponent.vue dentro de la carpeta src/components.
+
+/src/components/MyComponent.vue
+
+Code snippet
+
+<script setup>
+import { ref } from 'vue'
+
+const mensaje = ref('¡Hola desde mi primer componente reutilizable!')
+</script>
+
+<template>
+  <div class="my-component">
+    <h2>{{ mensaje }}</h2>
+    <p>Este componente vive en la carpeta "components".</p>
+  </div>
+</template>
+
+<style scoped>
+.my-component {
+  border: 1px solid #42b883;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+h2 {
+  color: #35495e;
+}
+</style>
+3. Usar el Componente en el Componente Raíz (App.vue)
+Ahora, abre tu componente principal App.vue y realiza dos acciones:
+
+Importar el nuevo componente.
+
+Usarlo dentro de la sección <template>.
+
+/src/App.vue
+
+Code snippet
+
+<script setup>
+// 1. Importar el componente que acabas de crear
+import MyComponent from './components/MyComponent.vue' 
+</script>
+
+<template>
+  <h1>Mi Aplicación Vue 3</h1>
+  
+  <MyComponent />
+  
+  <p>El código de arriba es el componente importado.</p>
+</template>
+
+<style scoped>
+h1 {
+  color: #42b883;
+}
+</style>
+4. El Punto de Entrada Fijo (index.html y main.js)
+Aquí tienes la explicación de cómo los archivos de entrada manejan la aplicación:
+
+A. El Archivo index.html (El Contenedor)
+Este archivo solo tiene un propósito: servir como el punto de anclaje (anchor) de tu aplicación Vue. Es donde Vue se "monta" y toma el control de todo el contenido. Nunca necesitas modificar este archivo para agregar componentes o vistas, solo la etiqueta ancla.
+
+/index.html
+
+HTML
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Proyecto Vue</title>
+  </head>
+  <body>
+    <div id="app"></div> 
+    
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+B. El Archivo main.js (El Montador)
+Este archivo es el cargador de la aplicación. Su única responsabilidad es decirle a Vue que tome el componente raíz (App.vue) y lo inyecte en el elemento <div id="app"></div> de tu index.html.
+
+/src/main.js
+
+JavaScript
+
+import './assets/main.css'
+
+import { createApp } from 'vue'
+import App from './App.vue' // Importa el componente raíz
+
+// 1. Crea la instancia de la aplicación Vue
+const app = createApp(App)
+
+// 2. Monta la aplicación en el elemento con id="app" de tu index.html
+app.mount('#app')
+Resumen:
+
+Tu aplicación funciona como una jerarquía:
+
+index.html proporciona el contenedor (<div id="app">).
+
+main.js inyecta el componente App.vue en ese contenedor.
+
+App.vue (el componente raíz) importa y renderiza todos tus componentes hijos, como MyComponent.vue.
+
+Esta separación de responsabilidades garantiza que tu proyecto sea modular y fácil de mantener a medida que crece.
