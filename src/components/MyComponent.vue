@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 
 const mensaje = ref('¡Hola desde mi primer componente reutilizable!')
+
+const count = ref(0)
 </script>
 
 <template>
@@ -14,6 +16,11 @@ const mensaje = ref('¡Hola desde mi primer componente reutilizable!')
     Hola desde el componente personalizado, este componente vive en la carpeta
     "components".
   </h1>
+
+  <h1>Contador</h1>
+  <button @click="count--">-</button>
+  <span class="count">{{ count }}</span>
+  <button @click="count++">+</button>
 </template>
 
 <style scoped>
@@ -25,5 +32,8 @@ const mensaje = ref('¡Hola desde mi primer componente reutilizable!')
 }
 h2 {
   color: #35495e;
+}
+.count {
+  margin: 0 10px;
 }
 </style>

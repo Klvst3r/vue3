@@ -7,6 +7,12 @@ import MyComponent from './components/MyComponent.vue'
   <h1>Mi Aplicación Vue 3</h1>
 
   <MyComponent />
+  <br />
+  <MyComponent />
+  <br />
+  <MyComponent />
+  <br />
+  <MyComponent />
 
   <p>El código de arriba es el componente importado.</p>
 </template>
