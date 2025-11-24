@@ -200,3 +200,112 @@ main.js inyecta el componente App.vue en ese contenedor.
 App.vue (el componente raíz) importa y renderiza todos tus componentes hijos, como MyComponent.vue.
 
 Esta separación de responsabilidades garantiza que tu proyecto sea modular y fácil de mantener a medida que crece.
+
+
+Para nuestro ejemplo mas sencillo vamos a continuar siguiendo una estructura basica
+
+Tenemos un apalicación princial
+
+App.vue
+
+vamos a limpiar y dentrod el template vamos a llamar al componente creado.
+
+
+
+Llamamos al componente como una etiqueta lo hacemos con el elemento
+
+  
+  <MyComponent />
+
+al carle click la extension oficial de vue importa al componente en el script setup
+
+import MyComponent from './components/MyComponent.vue'
+
+
+Ahora en Mycomponentdefinimos la estructra
+
+La damos estilos
+
+Ya que en los componentes siempre debn cerrarse
+
+puede ser asi:
+
+  <MyComponent />
+
+Tambien puede ser d ela siguiente manera:
+
+  <MyComponent></MyComponent>
+
+Siempre tiene que tener un cierre, para no tener errores.
+
+Si a nuestro componente lo queremos recibir con otro nombre, luego hacemos referencia a el por ejemplo:
+
+
+import MyComponent2 from './components/MyComponent.vue'
+
+  
+  <MyComponent2 />
+
+
+A este registro se le lma registro del compoennte de manera local, y aque lo regisytramos para que en App.vue lo puedamos utilizar. Pero podemos registrarlo de manera global
+
+
+Para ello lo haremos en el archivo main.js
+
+creamos nuestra app de la siguiente manera.
+
+createApp(App).mount('#app')
+
+o tambien la forma actual con:
+
+
+
+// 1. Creamos la instancia de la aplicación Vue
+const app = createApp(App)
+
+// 2. Montamos la aplicación en el elemento con id="app" de tu index.html
+app.mount('#app')
+
+
+
+podriamos tambien registrar los componentes de manera global de la siguiente manera:
+
+
+main.js
+
+
+
+// Importar estilos deginidos
+import './assets/main.css'
+
+import { createApp } from 'vue'
+import App from './App.vue'
+
+//Importacion de la tercera forma
+import MyComponent from './components/MyComponent.vue'
+
+//Tercera forma de registrar componnetes, incorporamos el coponente en la variable
+
+createApp(App)
+  .component('MyComponent', MyComponent) //Este segundo hace referencia de ocmo lo estoy recibiendo
+  .mount('#app')
+
+
+
+
+Con esto en el archivo App.vue podria eliminar   
+
+
+<script setup>
+// 1. Importar el componente que acabas de crear
+//import MyComponent from './components/MyComponent.vue'
+</script>
+
+
+y todo funciona exactamente igual
+
+Este tipo de registro se le conoce como registro globales.
+
+
+normalmente nosotros regisraos nuestro componente, de manera local
+

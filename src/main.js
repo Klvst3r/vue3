@@ -4,10 +4,21 @@ import './assets/main.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 
+//Importacion de la tercera forma
+import MyComponent from './components/MyComponent.vue'
+
+//Primera forma de registrar comonentes
+
 // createApp(App).mount('#app')
 
 // 1. Creamos la instancia de la aplicación Vue
-const app = createApp(App)
+// const app = createApp(App)
 
 // 2. Montamos la aplicación en el elemento con id="app" de tu index.html
-app.mount('#app')
+// app.mount('#app')
+
+//Tercera forma de registrar componnetes, incorporamos el coponente en la variable
+
+createApp(App)
+  .component('MyComponent', MyComponent) //Este segundo hace referencia de ocmo lo estoy recibiendo
+  .mount('#app')
