@@ -450,6 +450,20 @@ con el modificador number
 Esto solo es transofmracion de nuemros
 
 
-Modificador
+Modificador 
 
-    
+      <input type="text" v-model.number="texto">
+  <button @click="console.log(texto)">
+    Enviar
+  </button>
+
+
+pero el usuario deja espacios atras o adelante y enviar
+
+
+con espacios
+
+para eliminar esos espacios usamos el modificador trim
+
+su funcion es eliminar los espacios en blanco
+
