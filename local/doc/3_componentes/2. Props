@@ -143,5 +143,124 @@ let course = {
 }
 
 
-Para pasarle esta inforamción es diferente
+Para pasarle esta inforamción es diferente.
+
+
+Cuando yo quiero pasarle el contenido de una variable es:
+
+En la aplicación principal.
+
+
+Cuando queremos pasarle el contenido de una variable, lo que haremos es el componente agregarle dos puntitos
+
+
+<DetailCourse :course="Vue 3" />
+
+Lo que estamos especificando es que lo que viene a continuación es una variable de Js, en ese caso la variable se llama course 
+
+
+por ello pegamos course
+
+
+<DetailCourse :course="course" />
+
+
+El efecto va a ser similar solo que ahora lo que llegara sera un JSON, en DetailCourse, 
+
+Imprimiendose:
+
+{ "title": "Vue desde cero", "professor": "Klvst3r", "price": 10 }
+
+Es el contenido del JSON.
+
+
+Ahora si queremos enviar solo el titulo del arreglo al componente hijo y que este se renderice, entonces hacemos:
+
+
+Quitamos la impresion del console.log y en su lugra exponemos el atributo de la variable:
+
+//console.log(props.course);
+</script>
+
+<template>
+  <h1>
+    {{ course.title }}
+  </h1>
+</template>
+
+
+
+y para accesar a lso elemento hacemos
+
+<template>
+  <h1>
+    {{ course.title }}
+  </h1>
+  <p>
+    {{ course.professor }}
+  </p>
+  <p>{{ course.cost }}</p>
+</template>
+
+
+Esun array con carios JSON
+
+veamos un array de objetos
+
+Son 3 cursos que quiero iterar, podemos usr la directiva v-for
+
+
+Repetir tantas veces como elementos tenga el array
+
+course dentro del array courses y conforme vayamos recuperando los elementos del array se vayan almacenando en la variable course
+
+
+y le pasamos ese array a nuestro componente
+	<DetailCourse v-for="course in courses":course="course" />
+
+
+Asi en el componente de detalle en la vista
+
+<template>
+  <h1>
+    {{ course.title }}
+  </h1>
+  <p>
+    {{ course.professor }}
+  </p>
+  <p>{{ course.price }}</p>
+</template>
+
+y en el componente principal iteramos sobre el array de objetos y enviamos los valores a la varable course
+
+
+import DetailCourse from './components/DetailCourse.vue'
+
+let courses = [
+  {
+    title: 'Vue desde cero',
+    professor: 'Klvst3r',
+    price: 10,
+  },
+  {
+    title: 'Angular desde cero',
+    professor: 'Klvst3r',
+    price: 15,
+  },
+  {
+    title: 'React desde cero',
+    professor: 'Klvst3r',
+    price: 20,
+  },
+]
+</script>
+
+<template>
+  <DetailCourse v-for="course in courses" :course="course" />
+</template>
+ 
+
+
+luego le pasamos la información le pasamos la informacion l componente.
+
 
