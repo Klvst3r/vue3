@@ -318,6 +318,11 @@ y para renderizarlo
 
 tenemos el titulo y el hola munodo 
 
-desde el template no hay ningun inconveniente.
+desde el template no hay ningun inconveniente, podemos hacer referencia directamente en los nombres, pero si hay acción dentro del setu ptenemos que acceder al objeto props y luego al nombre con el cual esta viajando la infoamción.
+
+
+Si no queremos definir de esta manera.
+
+
 
 

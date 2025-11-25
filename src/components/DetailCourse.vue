@@ -1,7 +1,7 @@
 <script setup>
-const props = defineProps(['course', 'prueba'])
+const { course, prueba } = defineProps(['course', 'prueba'])
 
-//console.log(props.course);
+console.log(course)
 </script>
 
 <template>
