@@ -1,0 +1,147 @@
+2. Props
+
+Props
+
+Los props son una forma de pasar datos de un componente padre a un componente hijo. Vamos a utilizar props para compartir datos entre componentes y cómo utilizarlos para crear componentes más flexibles y reutilizables.
+
+
+En ocaciones vamos a querer pasarle información a nuestros componentes.
+
+
+POor ejemplo en un atienda de cursos en su pagina principal, en la seccion de cursos, al pulsar click sobre cada curso, cada curso tiene su información con la misma estructura.
+
+Titulo, imagen, calificacipon, contenido.
+
+Para cada uno de los cursos tendriamos que diseñaro, entonces es mucho mejor crear  un ocmponente de mostrar kla información pero cada vez que necesitamos un componente se muestre una inforamción diferente, proporcionarle la infoamción a ese componente, pasarle datos al componente esto es loq ue haremos.
+
+Creamos un nuevo comonente con la estructura básica:
+
+
+
+DetailCourse.vue
+
+<script setup>
+</script>
+
+<template>
+
+</template>
+
+<style scoped></style>
+
+
+Dentro del template colocamos un titulo
+
+Ahora en componente principal eliminando todo lo anterior, para importar el compoenete Detail Course
+
+importamos el componente y llamamos al componente en el template
+
+
+DetailCourse.vue
+---------
+
+import DetailCourse from './components/DetailCourse.vue'
+
+
+<DetailCourse />
+
+
+Aun no pasamos datos, para pasarle datos, primero hay que registrarlos, definiendo una variable course en DetaiCourse, que se tratad eun objeto con un campo llamado title, 
+
+
+let course = {
+  title: 'Vue desde cero',
+  professor: 'Klvst3r',
+  price: 10,
+}
+
+
+Esta información vamos a pasarlo al componente, pasandolo como un atributo.
+
+Vamos a pasarle una cadena de texto.
+
+Queremos pasarle información dentro de un atributo llamado course asignandole a ese atributo el valor de vue3
+
+<DetailCourse course="Vue 3" />
+
+con esto le estamos pasando información al componente, tenemos que recibirlo en el componente
+
+
+Para recibir, esta información que estaos mandando informaicón al comopnente, para ello en el setup vamos a definir una constante que llevara props por convencion aunque puede tener otro nombre, llamando al metodo const props =  defineProps
+
+La definición de ello debe de hacerse por la improtación por que esta definido de manera global, es decir podemos utilizarlo desde cualquier componente y este metodo lo que debe recibir un array y dentro  deben definirse el nombre de las variables que recibiran los valores.
+
+
+el defineProps esta deifnido de manera global y podemos usarlo desde cualquier componente.
+
+
+
+	const props = defineProps(['course']);
+
+
+Los atributos a los quertemos acceder estan definidos aca:
+
+
+let course = {
+  title: 'Vue desde cero',
+  professor: 'Klvst3r',
+  price: 10,
+}
+
+
+
+Con esto logramos pasarle pasar informacion al componente, al pasarle el valor tenemos acceso a esa inforamción:
+
+
+En nuesto caso deifnimos los valores en la palicación proncipal y los enviamos al componente
+
+<DetailCourse course="Vue 3" />
+
+el componente los recibe
+
+const props = defineProps(['course'])
+
+Ahora vamos a visualizar la información
+
+
+en el componente hijo mostramos el valor que le paso el componente padre
+
+	  <h1>
+    {{ course }}
+  </h1>
+
+
+ El resultado es
+
+ 	Vue 3
+
+Dese el template vamos a poder hacer referencia al prop simplemente, con la referencia del nombre course
+
+ 	const props = defineProps(['course'])
+
+Si quisieramos una accion dentro del script y con la referencia del props lo tendriamos que hacer.
+
+
+Similiar cuando creabamos un objeto reactivo.
+
+
+Accediamos al bojeto y luego a la propieadd value
+
+
+ console.log(props.course);
+
+De esta manera en console vemo el resultado de lavlor course
+
+
+Ahora queremos pasarle esta inforamción.
+
+
+let course = {
+  title: 'Vue desde cero',
+  professor: 'Klvst3r',
+  price: 10,
+}
+
+
+Para pasarle esta inforamción es diferente
+
