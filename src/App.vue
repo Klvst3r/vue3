@@ -30,7 +30,7 @@ const prueba = ref(5)
 <template>
   <input type="text" v-model="prueba" />
 
-  <DetailCourse v-for="course in courses" :course :prueba />
+  <DetailCourse v-for="course in courses" :course  />
 </template>
 <!-- h1 { color: #35495e; } -->
 <style scoped></style>

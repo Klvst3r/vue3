@@ -552,3 +552,16 @@ const prueba = ref(5)
 </template>
 <!-- h1 { color: #35495e; } -->
 <style scoped></style>
+
+
+
+Ahora que pasa si no le pasamos la información de prueba 
+
+<DetailCourse v-for="course in courses" :course  />
+
+
+No marcara error, y es que si no le pasamos un valor en prube a queda alamcenado el valor de null y eso eslo que muestra o mas bien no muestra,
+
+Pero que queremos pasar un dato requerido como parte d ela validación.
+
+
