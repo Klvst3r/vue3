@@ -1,7 +1,11 @@
 <script setup>
-const { course, prueba } = defineProps(['course', 'prueba'])
+const { course, prueba } = defineProps({
+  course: Object,
+  prueba: [String, Number],
+})
 
-console.log(course)
+//console.log(course)
+//prueba = 'Hola mundo desde el componente hijo'
 </script>
 
 <template>

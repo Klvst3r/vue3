@@ -24,10 +24,12 @@ let courses = [
 ]
 
 //Pasamos el atributo de manera dinamica:
-const prueba = ref('Hola mundo')
+const prueba = ref(5)
 </script>
 
 <template>
+  <input type="text" v-model="prueba" />
+
   <DetailCourse v-for="course in courses" :course :prueba />
 </template>
 <!-- h1 { color: #35495e; } -->

@@ -370,5 +370,185 @@ y luego vamos a pasarle ese atributo al componente y se lo pasamos al componente
 
 ahora en la app principal
 
-vamos acolocar un input
+vamos acolocar un input y le vamos a enlazarlo con la propiedad prueba, 
 
+despues del hola mundo del contenido de prueba
+
+agrego
+
+Hola mundo Hola como estas
+
+y se ve reflejado en los componentes hijos, tambien son modificados, si se modifica el componente padre tambien se modifica el prop, en el componente hijo.
+
+Es unidireccional. Del componente padre al comonente hijo, por que si nos vamos al componente hijo, po ejemplo
+
+quiero modificar el contenido de prueba, enlazarlo con la propiedad prueba
+
+
+Error:
+
+[plugin:vite:vue] v-model cannot be used on a prop, because local prop bindings are not writable.
+Use a v-bind binding combined with a v-on listener that emits update:x event instead.
+
+/home/klvst3r/dev/js/vue3/src/components/DetailCourse.vue:8:31
+
+6  |  
+7  |  <template>
+8  |    <input type="text" v-model="prueba" />
+   |                                 ^
+9  |    <h1>{{ course.title }} ({{ prueba }})</h1>
+10 |    <p>
+
+
+No puedo enlazarlo con la propiead 
+
+
+Lo mismo ocurrre desde si tratamos de modificar el valor de prueba con una constante
+
+
+error:
+
+
+[@vue/compiler-sfc] Cannot assign to destructured props as they are readonly.
+
+
+
+
+
+/home/klvst3r/dev/js/vue3/src/components/DetailCourse.vue
+2  |  const { course, prueba } = defineProps(['course', 'prueba'])
+3  |  
+4  |  //console.log(course)
+   |                        ^
+5  |  prueba = 'Hola mundo desde el componente hijo'
+   |  ^^^^^^
+6  |  </script>
+
+    at ScriptCompileContext.error (/home/klvst3r/dev/js/vue3/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:19762:11)
+    at rewriteId (/home/klvst3r/dev/js/vue3/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:23962:11)
+    at Object.enter (/home/klvst3r/dev/js/vue3/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:24024:13)
+
+
+No puedo cambiar el prop es decir puedo hacer modificaciones desde el componente padre, pero no desde los componentes hijos.
+
+Esto hay que tener esto presente.
+
+Si hay mecansimos para comuncar desde el hijo.
+
+
+
+Por lo menos asi no se puede hacer d emanera manual.
+
+
+Algo que podemos hacer al recibir los props, es agregar validaciones, util a desarrollar un componente designado a utilizarse por otros.
+
+Como se harian las validaciones.
+
+
+Quitamos el array
+
+
+const { course, prueba } = defineProps(['course', 'prueba'])
+
+
+a esto:
+
+const { course, prueba } = defineProps()
+
+en su reemplazo utilizamos un JSON
+
+
+vamos a recibir course especificcando cual es el tipado que esperamos recibir dentro del props, esperamos recibir un dato de tipo objetct, el segundo prop es el de prueba, y en ete caso es que esperemos un datto de tipo string
+
+
+
+const { course, prueba } = defineProps({
+  course: Object,
+  prueba: String,
+})
+
+
+ahora en el app principl. En el caos de que le pasemos cualquier otro valor en cursos o en prueba marcara un error, sino que el error o marcara a nivel de consola.
+
+
+ahora en App donde definimos la constante prueba no definimos una constante sino que le asignamos el valor de 5 es decir un dato de tipo numerico 
+
+const prueba = ref('Hola mundo')
+
+ahora le asignamos un numero
+
+
+const prueba = ref(5)
+
+
+Enviara un advertencia por que se esperaba recibir una valor de tipo string pero recibe un entero
+
+Asi si quiero recibir datos string y numericos deberia hacer.
+
+
+prueba: [String, Number],
+
+en un array 
+
+
+asi queda nuestro componente detalle
+
+<script setup>
+const { course, prueba } = defineProps({
+  course: Object,
+  prueba: [String, Number],
+})
+
+//console.log(course)
+//prueba = 'Hola mundo desde el componente hijo'
+</script>
+
+<template>
+  <h1>{{ course.title }} ({{ prueba }})</h1>
+  <p>
+    {{ course.professor }}
+  </p>
+  <p>{{ course.price }}</p>
+</template>
+
+<style scoped></style>
+
+
+y la app principal
+
+<script setup>
+//1. Importamos ref
+import { ref } from 'vue'
+
+// 2. Importar el componente Detail course
+import DetailCourse from './components/DetailCourse.vue'
+
+let courses = [
+  {
+    title: 'Vue desde cero',
+    professor: 'Klvst3r',
+    price: 10,
+  },
+  {
+    title: 'Angular desde cero',
+    professor: 'Klvst3r',
+    price: 15,
+  },
+  {
+    title: 'React desde cero',
+    professor: 'Klvst3r',
+    price: 20,
+  },
+]
+
+//Pasamos el atributo de manera dinamica:
+const prueba = ref(5)
+</script>
+
+<template>
+  <input type="text" v-model="prueba" />
+
+  <DetailCourse v-for="course in courses" :course :prueba />
+</template>
+<!-- h1 { color: #35495e; } -->
+<style scoped></style>
