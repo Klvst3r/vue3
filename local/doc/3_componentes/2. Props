@@ -565,3 +565,31 @@ No marcara error, y es que si no le pasamos un valor en prube a queda alamcenado
 Pero que queremos pasar un dato requerido como parte d ela validación.
 
 
+
+const { course, prueba } = defineProps({
+  course: Object,
+  //prueba: [String, Number],
+  prueba: {
+    type: Number,
+    required: 0,
+  },
+})
+
+
+marcaraun error, indicando que el dato prueba se esperaba un tipo de dato requerido.
+
+Otra cosa que se puede hacer es darle un valor por defecto 
+
+ prueba: {
+    type: Number,
+    //required: 0,
+    default: 0,
+  },
+
+
+Cuando damos un valor por defecto y si no le damos un valor toma l valor por defautl.
+
+pero no se modificara el valor entre parentesis de la vista por que no hay un enlace a apropiedad eso courre cuando se le pasa desde el componente padre:
+
+
+  <DetailCourse v-for="course in courses" :course :prueba />

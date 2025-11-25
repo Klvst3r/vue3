@@ -1,7 +1,12 @@
 <script setup>
 const { course, prueba } = defineProps({
   course: Object,
-  prueba: [String, Number],
+  //prueba: [String, Number],
+  prueba: {
+    type: Number,
+    //required: 0,
+    default: 0,
+  },
 })
 
 //console.log(course)
