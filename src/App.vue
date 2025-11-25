@@ -10,7 +10,7 @@ let course = {
 </script>
 
 <template>
-  <DetailCourse course="Vue 3" />
+  <DetailCourse :course="course" />
 </template>
 <!-- h1 { color: #35495e; } -->
 <style scoped></style>
