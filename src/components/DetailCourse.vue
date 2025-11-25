@@ -1,13 +1,11 @@
 <script setup>
-const props = defineProps(['course'])
+const props = defineProps(['course', 'prueba'])
 
 //console.log(props.course);
 </script>
 
 <template>
-  <h1>
-    {{ course.title }}
-  </h1>
+  <h1>{{ course.title }} ({{ prueba }})</h1>
   <p>
     {{ course.professor }}
   </p>

@@ -22,7 +22,7 @@ let courses = [
 </script>
 
 <template>
-  <DetailCourse v-for="course in courses" :course="course" />
+  <DetailCourse v-for="course in courses" :course prueba="Hola mundo" />
 </template>
 <!-- h1 { color: #35495e; } -->
 <style scoped></style>

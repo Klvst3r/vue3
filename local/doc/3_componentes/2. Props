@@ -264,3 +264,60 @@ let courses = [
 luego le pasamos la información le pasamos la informacion l componente.
 
 
+tenemos.
+
+Vue desde cero
+
+Klvst3r
+
+10
+Angular desde cero
+
+Klvst3r
+
+15
+React desde cero
+
+Klvst3r
+
+20
+
+
+Ahora.
+
+Cuando nosotros, pasamos dento de una varable el nombre de un atributo, por ejemplo course, lo que podemos tambien pasarlo asi;
+
+
+
+de
+
+
+<DetailCourse v-for="course in courses" :course="course" />
+
+a esto.
+
+<DetailCourse v-for="course in courses" :course />
+
+
+Simplemente pasamos lo que dentro del atribunto course se pasa una variable con el mismo nombre, 
+
+
+Pasamos un solo atributo, el atributo course, pero podemos pasar, mas de un atributo.
+
+Por ejemplo 
+
+<DetailCourse v-for="course in courses" :course prueba="Hola mundo" />
+
+y si le mandamos un atributo , lo tenemos que enviar dentro de los props, es decir aqui:
+
+const props = defineProps(['course', 'prueba'])
+
+y para renderizarlo
+
+<h1>{{ course.title }} ({{ prueba }})</h1>
+
+tenemos el titulo y el hola munodo 
+
+desde el template no hay ningun inconveniente.
+
+
