@@ -1,5 +1,8 @@
 <script setup>
-// 1. Importar el componente Detail course
+//1. Importamos ref
+import { ref } from 'vue'
+
+// 2. Importar el componente Detail course
 import DetailCourse from './components/DetailCourse.vue'
 
 let courses = [
@@ -19,10 +22,13 @@ let courses = [
     price: 20,
   },
 ]
+
+//Pasamos el atributo de manera dinamica:
+const prueba = ref('Hola mundo')
 </script>
 
 <template>
-  <DetailCourse v-for="course in courses" :course prueba="Hola mundo" />
+  <DetailCourse v-for="course in courses" :course :prueba />
 </template>
 <!-- h1 { color: #35495e; } -->
 <style scoped></style>

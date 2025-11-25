@@ -321,8 +321,54 @@ tenemos el titulo y el hola munodo
 desde el template no hay ningun inconveniente, podemos hacer referencia directamente en los nombres, pero si hay acción dentro del setu ptenemos que acceder al objeto props y luego al nombre con el cual esta viajando la infoamción.
 
 
-Si no queremos definir de esta manera.
+Si no queremos definir de esta manera, o no queremos acceder al prop y luego a la propiedad, lo que podemos hacer es recibir esta inforamción, y destructurarla de la siguiente manera, como va a llegar como objeto podriamos destructurarlo, es decir:
+
+Recuperamos lainfoamción, que llegamos a curso y recuperamos la inforamcipn que llega en prueba d ela siguiente manera:
 
 
+const { course, prueba} = defineProps(['course', 'prueba'])
 
+
+De esta maneara dentro del scritp puedo hacer a esta variable a la varaibel course, 
+
+Object { title: "Vue desde cero", professor: "Klvst3r", price: 10 }
+DetailCourse.vue:4:9
+Object { title: "Angular desde cero", professor: "Klvst3r", price: 15 }
+DetailCourse.vue:4:9
+Object { title: "React desde cero", professor: "Klvst3r", price: 20 }
+DetailCourse.vue:4:9
+
+
+En consolelog la salida es la de arriba con lo cual ya no necesitamos acceder a los props primero y leugo al nombre course.
+
+
+Algo que debemos tener en cuneta es que el flujo en el cual se pasan los props es unidireccional, 
+
+
+nosotros, en la app. pasamos 
+
+
+un atributo llamado prueba
+
+
+prueba="Hola mundo"
+
+si queremos pasarlo de manera dinamico, debemos hacer, definimos una constante se trata de un contenido reactivo.
+
+
+const prueba = ref('Hola mundo');
+
+como hacemos uso de ref tendremos que importar ref
+
+import { ref } from 'vue'
+
+y luego vamos a pasarle ese atributo al componente y se lo pasamos al componente
+
+
+<DetailCourse v-for="course in courses" :course :prueba />
+
+
+ahora en la app principal
+
+vamos acolocar un input
 
