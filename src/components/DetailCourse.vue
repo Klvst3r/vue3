@@ -7,6 +7,7 @@ const { course, prueba } = defineProps({
     //required: 0,
     default: 0,
   },
+  disabled: Boolean,
 })
 
 //console.log(course)
@@ -19,6 +20,8 @@ const { course, prueba } = defineProps({
     {{ course.professor }}
   </p>
   <p>{{ course.price }}</p>
+
+  <button :disabled="disabled">Haz click</button>
 </template>
 
 <style scoped></style>

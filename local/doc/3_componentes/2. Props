@@ -593,3 +593,48 @@ pero no se modificara el valor entre parentesis de la vista por que no hay un en
 
 
   <DetailCourse v-for="course in courses" :course :prueba />
+
+
+Pro ultimo vamos a definir un tipo de dato diferente, imaginemos que queremos especificar un dato, queremos pasar un parametro disabled, esa propiedad es de tipo boolean.
+
+
+
+
+  const { course, prueba } = defineProps({
+  course: Object,
+  //prueba: [String, Number],
+  prueba: {
+    type: Number,
+    //required: 0,
+    default: 0,
+  },
+  disabled: Boolean,
+})
+
+
+
+ahora definimos un boton con la propiedad disbled dinamico
+
+<button :disabled="disabled">Haz click</button>
+
+si en disabled tienemos true, significa que estara deshabilitado
+
+y en disabled false estara habilitado.
+
+cuando especificamos un prop es de tipo boolen y no le pasamos la información, por defecto el props tomara el valor de false.
+y el boton seguira deshabilitado
+
+
+Si a mi componente le pasamos el atributo disabled 
+
+
+<DetailCourse v-for="course in courses" :course :prueba :disabled="true" />
+
+
+Podriamos hacerlo asi o podemos ahacerlo
+
+
+<DetailCourse v-for="course in courses" :course :prueba disabled />
+
+Vue entiende que se ha definido un props, llamado disabled, se ha especificado que es booleano y se le asigna el valor de true y entonces queda deshabilitado el boton
+
