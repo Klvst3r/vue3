@@ -250,3 +250,64 @@ En el template padre pegar
 @decrement-count="decrementCount"
 
 Ahora debe fucnionar igual
+
+
+Actualmente se ha emitido el evento directamente en el boton
+
+
+<button @click="$emit('decrementCount', 2)">Haz click</button>
+
+En el template, estamos pidiendo que casa vez que hagamos click se emita el evetno, pero puede ocurrir que cada vez que ocurre el evento no desde el template.
+
+
+Lo que queremos que ocurra ahora es que alhacer click, se ejecute una fucnion que se llame buttonClick
+
+<button @click="buttonClick">Haz click</button>
+
+Esta funcion no existe aun, en el componente padre, la definimos en la parte del script
+
+function buttonClick(){
+  
+}
+
+Emitir desde aca el evento, anteriormente se emitia el evento al llamar al evento con un emit(parametro de decremento, valor)
+
+le pasabamos un parametro,
+
+ahora si hacemos click, no pasa nada. Por qu no se genera la funcion emit
+
+function buttonClick(){
+  $emit('decrement-count', 2)
+}
+
+Pero esto solo se puede definir en el template y no en el script, entonces, si es que queremos emitir un evento desde el script se debe hacer de la siguiente manera.
+
+definiendo primero en el componente hijo un aconstante llamada emit
+es la constante a tuilizar paa llamar, al metodo defineEmits(paramtero), pero luego de eso debemos llamar al siguiente menoto defineEmits
+
+Dentro vamos a especificar los eventos que queremos emitir
+
+ahora solo tenemos uno 
+
+
+
+const emit = defineEmits(['decremetnCount']);
+
+Ahora solo vamos a hacer referencia a la constante emit, seguido del nombre de los eventos declarados a utilizar, decremento count con el valor de 2
+
+en la funcion solo hacemos referencia al valor de la constante 
+
+function buttonClick() {
+  emit('decrementCount', 2)
+}
+
+
+y ya debe funcionar, si parece complicado se puede emitir directamente desde el boton.
+
+
+Emitir un eventos desde, cada vez que se guarde un registro en la bd, o una compra en el carrito de compras, se querra emitir desde aca.
+
+Dese el Script.
+
+Y se debe hacer asi.
+

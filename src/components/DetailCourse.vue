@@ -1,4 +1,6 @@
 <script setup>
+const emit = defineEmits(['decrementCount'])
+
 const props = defineProps({
   course: Object,
 
@@ -7,6 +9,10 @@ const props = defineProps({
     default: 0,
   },
 })
+
+function buttonClick() {
+  emit('decrementCount', 2)
+}
 
 //console.log(course)
 //prueba = 'Hola mundo desde el componente hijo'
@@ -19,7 +25,7 @@ const props = defineProps({
   </p>
   <p>{{ course.price }}</p>
 
-  <button @click="$emit('decrementCount', 2)">Haz click</button>
+  <button @click="buttonClick">Haz click</button>
 </template>
 
 <style scoped></style>
