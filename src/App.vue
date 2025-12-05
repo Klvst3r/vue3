@@ -25,6 +25,11 @@ let courses = [
 
 //Pasamos el atributo de manera dinamica:
 const count = ref(5)
+
+//Derivado en una funcion
+function decrementCount(n) {
+  count.value -= n
+}
 </script>
 
 <template>
@@ -34,7 +39,7 @@ const count = ref(5)
     v-for="course in courses"
     :course
     :count
-    @decrement-count="(n) => (count -= n)"
+    @decrement-count="decrementCount"
   />
 </template>
 <!-- h1 { color: #35495e; } -->

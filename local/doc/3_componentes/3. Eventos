@@ -232,3 +232,21 @@ Logrando, capturar el valor para diminuirlo en esa cantidad.
 
 Ahora podemos derivarla en otra operación con una funcion
 
+ 
+
+ count es un objeto reactivo
+
+function decrementCount(n) {
+  count.value -= n
+}
+</script>
+
+Recibe el parametro la funicon, y ahora acedemos a count que es un objetoractivo a su objeto value, y lo disminuya en n cantidad
+
+
+En el template padre pegar
+
+
+@decrement-count="decrementCount"
+
+Ahora debe fucnionar igual
