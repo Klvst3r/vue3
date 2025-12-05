@@ -24,13 +24,18 @@ let courses = [
 ]
 
 //Pasamos el atributo de manera dinamica:
-const prueba = ref(5)
+const count = ref(5)
 </script>
 
 <template>
-  <input type="text" v-model="prueba" />
+  <input type="text" v-model.number="count" />
 
-  <DetailCourse v-for="course in courses" :course :prueba disabled />
+  <DetailCourse
+    v-for="course in courses"
+    :course
+    :count
+    @decrement-count="(n) => (count -= n)"
+  />
 </template>
 <!-- h1 { color: #35495e; } -->
 <style scoped></style>

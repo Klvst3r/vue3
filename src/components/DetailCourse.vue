@@ -1,13 +1,11 @@
 <script setup>
-const { course, prueba } = defineProps({
+const props = defineProps({
   course: Object,
-  //prueba: [String, Number],
-  prueba: {
+
+  count: {
     type: Number,
-    //required: 0,
     default: 0,
   },
-  disabled: Boolean,
 })
 
 //console.log(course)
@@ -15,13 +13,13 @@ const { course, prueba } = defineProps({
 </script>
 
 <template>
-  <h1>{{ course.title }} ({{ prueba }})</h1>
+  <h1>{{ course.title }} ({{ count }})</h1>
   <p>
     {{ course.professor }}
   </p>
   <p>{{ course.price }}</p>
 
-  <button :disabled="disabled">Haz click</button>
+  <button @click="$emit('decrementCount', 2)">Haz click</button>
 </template>
 
 <style scoped></style>

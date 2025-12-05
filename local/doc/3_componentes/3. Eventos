@@ -1,0 +1,234 @@
+3. Eventos
+
+Los eventos son una forma de comunicar entre componentes hijos y componentes padres. Vamos a utilizar los eventos para comunicar cambios desde un componente hijo a su componente padre.
+
+Anteriormente indicabamos que cuando utilizabamos props, el flujo de datos era unidireccipnal desde el componente padra hacia el componente hijo.
+
+Eso quiere decir, que si modificabamos la propiedad del componente padre, esto se veia reflejado en todos los componentes hijos, pero no podiamos modificar el prop desde el componente hijo.
+
+Pero si necesitabamos que desde el componente hijo modificabamos la propiedad del componente padre.
+
+Se puede, utilizando eventos.
+
+Para ello 
+
+En el componente padre, dond elo estamos llamando:
+
+<DetailCourse v-for="course in courses" :course :prueba disabled />
+
+
+Eliminamos la propiedad disabled.
+
+y en el componente hijo en el boton,
+
+<button >Haz click</button>
+
+Ydentro de los props eliminamos
+
+Quitamos:
+
+,
+  disabled: Boolean,
+
+Otra cosa es que el prop que queremos recibir, ya no sera prueba sino sera, count  
+
+dejando:
+
+const props = defineProps({
+  course: Object,
+
+  count: {
+    type: Number,
+    default: 0,
+  },
+})
+
+Cambiamos donde se hacia referencia
+
+<h1>{{ course.title }} ({{ count }})</h1>
+
+
+En el compoente principal 
+
+
+en el atributo dinamico:
+
+const count = ref(5)
+
+
+
+<DetailCourse v-for="course in courses" :course :count />
+
+
+por ultimo el input que se estaba enlazando tambien 
+
+<input type="text" v-model="count" />
+
+
+conesto en el componente padre
+
+<script setup>
+//1. Importamos ref
+import { ref } from 'vue'
+
+// 2. Importar el componente Detail course
+import DetailCourse from './components/DetailCourse.vue'
+
+let courses = [
+  {
+    title: 'Vue desde cero',
+    professor: 'Klvst3r',
+    price: 10,
+  },
+  {
+    title: 'Angular desde cero',
+    professor: 'Klvst3r',
+    price: 15,
+  },
+  {
+    title: 'React desde cero',
+    professor: 'Klvst3r',
+    price: 20,
+  },
+]
+
+//Pasamos el atributo de manera dinamica:
+const count = ref(5)
+</script>
+
+<template>
+  <input type="text" v-model="count" />
+
+  <DetailCourse v-for="course in courses" :course :count />
+</template>
+<!-- h1 { color: #35495e; } -->
+<style scoped></style>
+
+
+y el comopnente ijo
+
+<script setup>
+const props = defineProps({
+  course: Object,
+
+  count: {
+    type: Number,
+    default: 0,
+  },
+})
+
+//console.log(course)
+//prueba = 'Hola mundo desde el componente hijo'
+</script>
+
+<template>
+  <h1>{{ course.title }} ({{ count }})</h1>
+  <p>
+    {{ course.professor }}
+  </p>
+  <p>{{ course.price }}</p>
+
+  <button>Haz click</button>
+</template>
+
+<style scoped></style>
+
+
+
+todo sigue funcionando igual
+
+
+
+<input type="text" v-model.number="count" />
+
+
+Para transformar el valor en un valor numerico.
+
+
+
+Lo que se prentende es que cada vez que se haga click sobre el boton, se modifique, el valor, lo disminuya en uno.
+
+Para ello se trabajara con eventos.
+
+Para ello en el componente hijo en el boton
+
+Al hacer click se ejecutara un evento.
+
+
+Podriamos pedir que escuchemos el evento click y emitirun evento personalizado 
+
+<button @click="">Haz click</button>
+
+Debemos llamar al metodo integrado emit, dentro del metodo integrad abrimos paretesis y darle un nombre a nuestro evento.
+
+<button @click="$emit('decrementCount')">Haz click</button>
+
+
+ahora debe haber algo que lo este escuchando.
+
+Para que al hacer click disminuyta en uno.
+
+Entonces para escuchar el evento, nos vamos al componente padre y donde se llama el componente escuchamos el evento de la siguiente manera:
+
+
+
+  <DetailCourse 
+    v-for="course in courses" 
+    :course :count 
+    @decrementCount="count--"
+    />
+
+
+Disminuyendo en 1 la propiedad count    
+
+
+De esta manera que desde el componente hijo, modificamos una propiedad del compoente padre.
+
+
+con esto disminuye en uno nuestro valor de lo que tengamos en el input.
+
+Por que todos se estan vien reflejando por que el cambio se esta haciendo desde el componente padre, por ello desd ahi modific el evento, por consecuencia, se refleja cn todos los componentes hijos que se esten utilizando.
+
+Vue permite escuchar los eventos, que hacen referencia, al nombre del evento.
+
+decrementCount
+
+Podemos utilizar una sentencia, que es la siguiente.
+
+
+@decrement-count="count--"
+
+vue hace la transformacioin automatica del camel Case a un formato keuel, parlabras separadas por guienes..
+
+
+Que tal si nosotros, a la hora de emitir un evento queremos pasarle un parametro, por eemplo queremos pasarle la cantidad, con la cual quiero que disminue, por ejemplo de 2 n 2.
+
+Para elo nos dirigimos a la hora de escuchar tenemos que escucharlo de la siguiente manera.
+
+
+con un afuncion flecha
+
+
+dentro de los parentesis recibimos el parametro por ejemplo
+
+2
+
+del 
+
+
+<button @click="$emit('decrementCount', 2)">Haz click</button>
+
+
+Puede ser el valor de n
+
+@decrement-count="(n) =>"
+
+Una vez recibido, lo proximo es querer modificar el valor de count disminuyendo en el valor recibido.
+
+
+@decrement-count="(n) => (count -= n)"
+
+Logrando, capturar el valor para diminuirlo en esa cantidad.
+
+Ahora podemos derivarla en otra operación con una funcion
+
