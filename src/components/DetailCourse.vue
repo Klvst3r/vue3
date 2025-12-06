@@ -4,22 +4,20 @@ const emit = defineEmits(['decrementCount'])
 const props = defineProps({
   course: Object,
 
-  count: {
-    type: Number,
-    default: 0,
-  },
 })
 
+const count = defineModel();
+
+
 function buttonClick() {
-  emit('decrementCount', 2)
+  count.value--;
 }
 
-//console.log(course)
-//prueba = 'Hola mundo desde el componente hijo'
 </script>
 
 <template>
-  <h1>{{ course.title }} ({{ count }})</h1>
+   <h1>{{ course.title }}</h1>
+   <input type="text" v-model="count" />
   <p>
     {{ course.professor }}
   </p>

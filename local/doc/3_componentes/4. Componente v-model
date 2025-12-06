@@ -1,0 +1,135 @@
+4. Componente v-model
+
+Anteriormrnete vimos como trabajar con eventos generando una comunicacion entre el componente hijo hacia elcomponente padre, de tal manera que desde el componente hijo pudieramos emitir eventos y modificar un apropiedad del componente padre.
+
+
+Hay casos donde lo unico que nos interesa es mantener enlazado una propiedad del componente padre con una propiedad del compoenente hijo, asi que se puede manejar de una manera mas sencilla sin la necesidad de trabajar con eventos.
+
+en el componente padre 
+
+Vamos a centrarnos en esta parte del compoennte padre.
+
+  <DetailCourse
+    v-for="course in courses"
+    :course
+    :count
+    @decrement-count="decrementCount"
+  />
+
+
+Lo que estamos diciento es que se mantenga  a la escucha del evento click al ejecutarse el evento se ejecutaria el evento decrementCount, pero ya no deberia de ocurrir de esa manera. 
+
+Se esta a la escucha de este evento:
+
+@decrement-count
+
+para eejecutar este metodo:
+
+ecrementCount
+
+Como ya no queremos que ocurra dejamos asi.
+
+
+  <DetailCourse
+    v-for="course in courses"
+    :course
+    :count
+
+  />
+
+
+Eliminando tambien la declaracion del metodo.
+
+Anteriormente la forma de como estabamos pasando información al componente hijo es a traves de un atributo es decir el atributo :count si lo hacemos asi nos abligamos a recibirlo en el coponente hijo en la parte del props
+
+
+en el componente hijo
+
+const props = defineProps({
+  course: Object,
+
+  count: {
+    type: Number,
+    default: 0,
+  },
+})
+
+
+
+Como se ha logrado hacer aqui:
+
+count: {
+    type: Number,
+    default: 0,
+  },
+
+  Pero se tiene otra forma de pasar información utilizando la directiva v-model.
+
+
+  Anteriormente ya se habia utilizado cuando quweriamos enlazar una propiedad con un input, pero tamien se puede utilizar para enlazar una propiedad con un componente hijo haciendolo de la siguiente manera. 
+
+  En el componente padre:
+
+  Lo que queremos es pasarle o enlazarlo
+
+    <DetailCourse
+    v-for="course in courses"
+    :course
+    v.model="count"
+  />
+
+
+  con la propiedad llmada count , cuando la enlazamos de esta manera, tambien se tiene que recibir en el componente hijo, solo que ahora ya no se recibira comop un props
+
+  /*   count: {
+    type: Number,
+    default: 0,
+  }, */
+
+
+  Entonces de que manera lo vamos a recibir.
+
+
+  definimos una constante count 
+
+
+  const count = defineModel();
+
+  Con esto estamos logrando recibir la informaicón, con la diferencia de que va a tener un enlace bidirecccional, es decir vamos apoder modificar esta propiedad.
+
+   v-model="count"
+
+
+ Desde aqui, pero tambien se podra modificar desde el componente hijo.
+
+ Por ejemplo.
+
+ Actualmente estamos recibiendo a count y estanmos mostrandolo en el template del componente hijo.
+
+
+   <h1>{{ course.title }} ({{ count }})</h1>
+
+
+Despues se habia colocado un boton con el ebvento @click, lo que eestaba haciendo es ejecutarmoe una funcion 
+buttonClick()
+
+cuando nos dirigiamos a esa funcion 
+
+function buttonClick() {
+  emit('decrementCount', 2)
+}
+
+
+
+
+Lo que queremos hacer en este momento es acceder al objeto count por que estamos creando un objeto count accedr a su value y disminuirle en una unidad.
+
+Tdo esto se hacia con el props, pero ahora al definirse como un modelo
+
+
+  const count = defineModel();
+
+
+Permite poder hacer el decremento.
+
+  
