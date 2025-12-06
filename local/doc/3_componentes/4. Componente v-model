@@ -132,4 +132,186 @@ Tdo esto se hacia con el props, pero ahora al definirse como un modelo
 
 Permite poder hacer el decremento.
 
-  
+
+
+  La definición correcta del componente hijo queda:
+
+
+  <script setup>
+const emit = defineEmits(['decrementCount'])
+
+const props = defineProps({
+  course: Object,
+
+})
+
+const count = defineModel();
+
+
+function buttonClick() {
+  count.value--;
+}
+
+</script>
+
+<template>
+   <h1>{{ course.title }} ({{ count }})</h1>
+  <p>
+    {{ course.professor }}
+  </p>
+  <p>{{ course.price }}</p>
+
+  <button @click="buttonClick">Haz click</button>
+</template>
+
+<style scoped></style>
+
+
+y el componente padre queda:
+
+
+<script setup>
+//1. Importamos ref
+import { ref } from 'vue'
+
+// 2. Importar el componente Detail course
+import DetailCourse from './components/DetailCourse.vue'
+
+let courses = [
+  {
+    title: 'Vue desde cero',
+    professor: 'Klvst3r',
+    price: 10,
+  },
+  {
+    title: 'Angular desde cero',
+    professor: 'Klvst3r',
+    price: 15,
+  },
+  {
+    title: 'React desde cero',
+    professor: 'Klvst3r',
+    price: 20,
+  },
+]
+
+//Pasamos el atributo de manera dinamica:
+const count = ref(5)
+
+
+</script>
+
+<template>
+  <input type="text" v-model.number="count" />
+
+ <DetailCourse
+    v-for="course in courses"
+    :key="course.title"
+    :course="course"
+    v-model="count"
+  />
+</template>
+<!-- h1 { color: #35495e; } -->
+<style scoped></style>
+
+
+
+
+
+Esta forma de pasar los parametros permite tambien poder enlazarlo con un input dentro del componente hijo, podremos no renderisar count
+
+quedando definido en un oinoput y dento colocar un v-model enlazado con la porpiedad count.
+
+
+
+  <input type="text" v-model="count" />
+
+
+  con esto cuando modiquemos un valor cambiara en todos los demas valore.
+
+  Anteriormente especificabamos el tipo de dato recibido de tipo numbre y que el valor por defecto es cero, podriamos definirlo de la siguiente manera:
+
+  const count = defineModel({
+  type: Number,
+  defautl: 0,
+});
+
+
+
+ahora si quewremos enlazar con mas de un valor ya que ahora en nuestro componente hijo lo tenemos definido como un numero
+
+   <input type="text" v-model.number="count" />
+
+
+Lo que tenemos que hacer es que en:
+
+agregando : y escribuiendo el nombre con el que queremos escribircomo estamos pasando un avariable llamada count
+
+
+ <DetailCourse
+    v-for="course in courses"
+    :key="course.title"
+    :course="course"
+    v-model="count"
+  />
+
+
+
+Entonces queremos que viaje a traves de una varable llamada count
+
+
+v-model:count="count"
+
+
+y debemos especificar en el cual esta vuiajando
+
+
+const count = defineModel('count', {
+  type: Number,
+  defautl: 0,
+});
+
+
+y opcoinalmente un segundo parametro el tipo de dato y valor por defalut, o simple,ente dejar asi:
+
+
+const count = defineModel('count');
+
+
+ya que si queremos pasar validaciones, estas pueden pasar como segundo parametro
+
+
+ahora entonces estamos recibiendo en un campo llamada count,
+
+
+   v-model:count="count"
+
+
+   capturandolo aqui:
+
+
+
+   const count = defineModel('count', {
+  type: Number,
+  defautl: 0,
+});
+
+
+
+si queremos oasar mas parametros 
+
+pudiendo agregar tantos v-model comop parametros quieramos pasar. 
+
+ej.
+
+
+ <DetailCourse
+    v-for="course in courses"
+    :key="course.title"
+    :course="course"
+    v-model:count="count" 
+     v-model:prueba="count" 
+  />
+
+
+

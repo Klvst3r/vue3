@@ -36,7 +36,8 @@ const count = ref(5)
     v-for="course in courses"
     :key="course.title"
     :course="course"
-    v-model="count"
+    v-model:count="count" 
+
   />
 </template>
 <!-- h1 { color: #35495e; } -->

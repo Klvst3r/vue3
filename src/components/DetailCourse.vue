@@ -6,7 +6,10 @@ const props = defineProps({
 
 })
 
-const count = defineModel();
+const count = defineModel('count', {
+  type: Number,
+  defautl: 0,
+});
 
 
 function buttonClick() {
@@ -17,7 +20,7 @@ function buttonClick() {
 
 <template>
    <h1>{{ course.title }}</h1>
-   <input type="text" v-model="count" />
+   <input type="text" v-model.number="count" />
   <p>
     {{ course.professor }}
   </p>
