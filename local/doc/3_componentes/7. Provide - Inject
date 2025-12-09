@@ -1,0 +1,79 @@
+7. Provide / Inject
+
+
+Inicando un componente padre limpio
+
+<script setup></script>
+
+<template></template>
+
+<style scoped></style>
+
+
+el componente hijo de alerta
+
+lo limpiamos
+
+<script setup>
+
+</script>
+
+<template>
+ 
+</template>
+
+
+y le agregamos
+
+<script setup>
+    import { ref } from 'vue';
+</script>
+
+
+Definiremos unos componentes adicionales, definimos uncomponente llamado 
+
+- Onecomponent.vue
+- TwoComponen.vue
+- ThreeComponent.vue
+
+Copiamos la estrcutrua del componente padre enc ada componente hijo
+
+
+Lo que quermeos es que en el cooonente app llamar al primer componente
+
+<OneComponent></OneComponent>
+
+Se importa el componente
+
+import OneComponent from '@/components/OneComponent.vue'
+
+en el componente hijo 1
+
+tenemos
+
+<script setup>
+import TwoComponent from '@/components/TwoComponent.vue'
+</script>
+
+<template>
+  <div class="bg-red-500 p-8">
+    <p class="text-2xl">Hola desde el componente 1</p>
+    <TwoComponent />
+  </div>
+</template>
+
+<style scoped></style>
+
+
+y en el componente 2
+
+<template>
+  <div class="bg-blue-500 p-8">
+    <p class="text-2xl">Hola desde el componente 2</p>
+  </div>
+</template>
+
+
+
+Tenemos un componente dentro de otro componente, finalmente llamamos al componente 3 desde el componente 3
+

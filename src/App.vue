@@ -1,12 +1,9 @@
 <script setup>
-import AlertComponent from '@/components/AlertComponent.vue'
+import OneComponent from '@/components/OneComponent.vue'
 </script>
 
 <template>
-  <AlertComponent type="danger">
-    <template #title> Alert Danger! - &nbsp; </template>
-    Hola desde la alerta
-  </AlertComponent>
+  <OneComponent />
 </template>
 
 <style scoped></style>
