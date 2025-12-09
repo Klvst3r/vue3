@@ -23,7 +23,7 @@ const alertColor =
     class="flex items-center p-4 mb-4 text-sm border rounded-lg"
     role="alert"
   >
-    <span class="font-medium">Info! -</span>
-    <slot></slot>
+    <span class="font-medium"> <slot name="title"> Info! - &nbsp;</slot></span>
+    <slot> Contenido de respaldo </slot>
   </div>
 </template>

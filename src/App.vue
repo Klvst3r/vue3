@@ -4,7 +4,7 @@ import AlertComponent from '@/components/AlertComponent.vue'
 
 <template>
   <AlertComponent type="danger">
-    This is a default Tailwind/Flowbite alert.
+    <!-- <template #title> Alert Danger! - &nbsp; </template> -->
   </AlertComponent>
 </template>
 

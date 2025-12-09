@@ -49,3 +49,65 @@ Quedando:
 
 
   todo lo que este dentro de las etiqeutas definidas sera el mensaje enviado como texto en nuestro slot
+
+
+  Podremos pasar información de respaldo, que consiste en medio de entre los slot un texto que es el contenido del respaldo
+
+  Lo que ocurre que cuando no pasemos nada desde la etieuat del padre paraecera el texto o contenido de respaldo
+
+
+  Va a ver ocaciones que cuando la alerta vamos a necesitar mas d eun slot, 
+
+  Cortamos
+
+  Info! -
+
+  Agregando otro slot
+
+
+ <div
+    :class="alertColor"
+    v-bind="attrs"
+    class="flex items-center p-4 mb-4 text-sm border rounded-lg"
+    role="alert"
+  >
+    <span class="font-medium"> <slot name="title"> Info! -</slot></span>
+    <slot> Contenido de respaldo </slot>
+  </div>
+
+
+  Le damos un nombre
+
+  y si queremos modificar el valor
+
+a la hora de llamar al componente, agregamos unas etiquetas template pasando informacion con v-slot llamado titile cambiando el texto por alert danger
+
+<AlertComponent type="danger">
+    <template v-slot:title> Alert Danger </template>
+  </AlertComponent>
+</template>
+
+El slot princpl sera lo que este dentro de AlertComponent, para que internamente utilizaemos slots internos
+
+Podemos utilizar esta sintaxis
+
+<template v-slot:title>
+
+Aunque podremos utilizar otra sintaxis
+
+Sistituyendo v-slot: por el #
+
+<template #title> Alert Danger! - &nbsp; </template>
+
+Sigue apareciendo nuestros valors, 
+
+
+imaginemos que no estamos enviando
+
+<template #title> Alert Danger! - &nbsp; </template>
+
+
+y en e componente hijo tampoco estamos enviando
+
+Si no pasamos parametros se deberia ocultar
+
