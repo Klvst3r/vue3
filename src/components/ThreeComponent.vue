@@ -1,10 +1,12 @@
 <script setup>
 import TwoComponent from '@/components/TwoComponent.vue'
+const props = defineProps(['nombre'])
 </script>
 
 <template>
   <div class="bg-yellow-500 p-8">
     <p class="text-2xl">Hola desde el componente 3</p>
+    <p>{{ props.nombre }}</p>
   </div>
 </template>
 

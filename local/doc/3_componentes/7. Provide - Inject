@@ -77,3 +77,96 @@ y en el componente 2
 
 Tenemos un componente dentro de otro componente, finalmente llamamos al componente 3 desde el componente 3
 
+<script setup>
+import TwoComponent from '@/components/TwoComponent.vue'
+</script>
+
+<template>
+  <div class="bg-yellow-500 p-8">
+    <p class="text-2xl">Hola desde el componente 3</p>
+  </div>
+</template>
+
+<style scoped></style>
+
+
+Lo que queremos saber 
+
+
+ahora dentro del componente uno quiero definir la propiedad del compoente 1,pueda seraccedido por el componente 3
+
+
+Declaro una constante reactiva que inicialmente tiene una cadena vacia
+
+
+<script setup>
+import { ref } from 'vue'
+import TwoComponent from '@/components/TwoComponent.vue'
+
+
+
+//const nombre = ref('Klvst3r');
+const nombre = ref('')
+</script>
+
+<template>
+  <div class="bg-red-500 p-8">
+    <p class="text-2xl">Hola desde el componente 1</p>
+    <TwoComponent />
+  </div>
+</template>
+
+<style scoped></style>
+
+
+
+ahora para que el componente 3 tenga acceso a esta propiedad, debemos pasarle del componente 1 al componente 2, el valor y cuando lo reciba el componente 2 pasarlo al componente 3, podremos entonce hacer.
+
+
+Indicamos que queremos pasar.
+
+la propiedad se llama nombre y como la vamos a pasar dentro del mismo nombre hacemos
+
+<TwoComponent :nombre/>
+
+Ahora, una vez teniendo eso lo recibimos en el componente 2 dentro de los props, 
+
+en el comopnente 2
+
+definimos
+
+<script setup>
+import ThreeComponent from '@/components/ThreeComponent.vue'
+
+const props = defineProps(['nombre']);
+
+
+para recibir estenombre, desde este momento el componente 2 tiene acceso, a esta propiedad, lo que se tendria que hacer es pasarlo al componente 3.
+
+
+ Le pasamos el nombre el cmponente 3
+
+ <ThreeComponent :nombre/>
+
+ y en el compoennte 3 hacemos lo mismo que en el componente 2
+
+ const props = defineProps(['nombre']);
+
+ De esta manera podria ahora si en el componente 3 mostrar esa inforamción 
+
+ en elc omponente 3
+
+
+
+ahora en el componente 1 o desde el componente 1 definimos un valor.
+
+const nombre = ref('Klvst3r');
+
+
+Ese valor se parasara a traves de los componentes, lo que se define en el componente 1se imprime en el componente 3.
+
+
+
+Si vemos para pasar un valor de un componente incial al final hemos tenido que pasar de componente a en componente, y el coopnente 2 no necesita es ainforamción siplemente  lo esta recibiendo y volviendo a pasar, como es un valor no es tan complejo pero al escalarse el proyecto, con 6 nives o mas, empezamos a trabajar de esta manera.
+
+
