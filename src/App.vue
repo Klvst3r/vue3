@@ -3,7 +3,7 @@ import AlertComponent from '@/components/AlertComponent.vue'
 </script>
 
 <template>
-  <AlertComponent class="bg-red-600" />
+  <AlertComponent type="info" />
 </template>
 
 <style scoped></style>

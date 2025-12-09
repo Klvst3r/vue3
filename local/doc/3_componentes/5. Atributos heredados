@@ -236,6 +236,236 @@ logrando nuevamente un color de fondo aplicado pero en esta ocacion en el segund
 Este comportamiento funciona para cualquier atributo.
 
 
+Esto s util para cuando utilizamos, style, id, incluso eventos.
+
+
+Una vez definido esto ahora trabajaremos con las alertas.
+
+
+Copiamos el estilo, pegamos en el componente hijo.
+
+
+
+<div class="p-4 mb-4 text-sm text-fg-brand-strong rounded-base bg-brand-softer" role="alert">
+  <span class="font-medium">Info alert!</span> Change a few things up and try submitting again.
+</div>
+
+
+
+
+
+Debemos cambiar la linea en el componente hijo de la siguientemanera:
+
+Cuando usas inheritAttrs: false, Vue ya no pasa automáticamente los atributos (incluido class) al elemento raíz.
+Por eso tu clase bg-red-600 del componente padre no se está aplicando.
+
+Si vas a usar inheritAttrs: false, entonces tienes que aplicar manualmente los atributos con useAttrs().
+
+
+
+
+
+
+<script setup>
+import { useAttrs } from 'vue'
+
+defineOptions({
+  inheritAttrs: false,
+})
+
+const attrs = useAttrs()
+</script>
+
+<template>
+  <div
+    v-bind="attrs"
+    class="p-4 mb-4 text-sm text-fg-brand-strong rounded-base bg-brand-softer"
+    role="alert"
+  >
+    <span class="font-medium">Info alert!</span>
+    Change a few things up and try submitting again.
+  </div>
+</template>
+
+
+
+
+v-bind="attrs" aplica todos los atributos enviados desde el padre
+(incluyendo class="bg-red-600")
+
+Vue combina la clase del padre con las clases base del hijo.
+
+✔ Ahora sí se aplicará bg-red-600 correctamente.
+
+⭐ Resultado final
+
+El div final tendrá algo como:
+
+<div class="p-4 mb-4 text-sm text-fg-brand-strong rounded-base bg-brand-softer bg-red-600" role="alert">
+
+
+Tailwind aplicará ambas clases (y la última que defina un color gana).
+
+🔥 Bonus: Si quieres que la clase del padre sobrescriba el color
+
+Tailwind aplica prioridad según el orden de clases.
+
+Si quieres que bg-red-600 reemplace bg-brand-softer, pon primero el v-bind:
+
+<div
+  v-bind="attrs"
+  class="p-4 mb-4 text-sm text-fg-brand-strong rounded-base"
+  role="alert"
+>
+
+
+Y quita bg-brand-softer.
+
+📌 Alternativa sin inheritAttrs: false
+
+Si NO necesitas control total, simplemente quítalo y Vue hará todo automáticamente:
+
+<script setup>
+</script>
+
+<template>
+  <div
+    class="p-4 mb-4 text-sm text-fg-brand-strong rounded-base bg-brand-softer"
+    role="alert"
+  >
+    <span class="font-medium">Info alert!</span>
+    Change a few things up and try submitting again.
+  </div>
+</template>
+
+
+Y el padre:
+
+<AlertComponent class="bg-red-600" />
+
+
+Ya funcionaría sin nada más.
+
+
+
+pero en el componnet padre definimos
+
+<template>
+  <AlertComponent />
+</template>
+
+y en el componente hijo
+<script setup>
+import { useAttrs } from 'vue'
+
+defineOptions({
+  inheritAttrs: false,
+})
+
+const attrs = useAttrs()
+</script>
+
+<template>
+  <div
+    v-bind="attrs"
+    class="flex items-center p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50"
+    role="alert"
+  >
+    <span class="font-medium">Info!</span>
+    This is a default Tailwind/Flowbite alert.
+  </div>
+</template>
+
+
+
+
+
+
+partiendo de esto me gsuaria que cambiaramos los colores de la alerta, para hacer esto 
+
+
+
+
+
+pasaremos un atributo llamado type
+<AlertComponent type="info" />
+
+empezamos con un aalerta de tipo info
+
+
+
+
+como le estamos mandando un atributo teneos que recibirlo en el componente hijo
+
+<script setup>
+    const props = defineProps({
+      type: {
+        type: String,
+        default: 'info',
+      },
+    });
+</script>
+
+con un valor por defecto, para que tome ese valor.
+
+Ahora para cambiar el color de la alerta
+
+definimos otra constante
+
+const alertColor = {}[]
+
+al definir asi, evaluaremos algo como un siwtch, 
+
+
+
+
+const alertColor = {}[props.type]
+
+entonces valuaremos los props mediante un campo llamado type
+
+
+
+Si dentro del props del tipy type tenemos un valor almacenado de tipo info y lo que queremos que se le atribuya a esa constante sea las sigueintes clases 
+
+
+
+tenemos netonces:
+
+info: 'text-blue-800 bg-blue-50',
+
+elimiando esos valores de la clase de Tailwindcss en la alerta, podremos manejar el valor por defecto
+
+y podremos asignar un valor por defecto
+
+cquedando
+
+
+
+const alertColor =
+  {
+    info: 'text-blue-800 bg-blue-50',
+  }[props.type] || 'text-blue-800 bg-blue-50'
+
+y el nombre alertColor vamos a asignarlo en el div de maenra dinamica;
+
+
+de la siguente manera
+
+
+
+
+<div
+    :class="alertColor"
+    v-bind="attrs"
+    class="flex items-center p-4 mb-4 text-sm border border-blue-300 rounded-lg"
+    role="alert"
+  >
+de primera instancia debe ser de color azul
+
+
+
+
+
 
 
 
@@ -249,4 +479,7 @@ https://tailwindcss.com/docs/installation/using-vite
 
 Con CDN
 https://tailwindcss.com/docs/installation/play-cdn
+
+Alertas Tailwind CSS
+https://flowbite.com/docs/components/alerts/
 
