@@ -197,6 +197,43 @@ El div puede teneruna clase lo que hara vue es combinar varios atributos como es
 
 
 
+Imaginemos ahora que queremos que el atributo que estamos pasando del c omponente padre al componente hijo, no se aasigne al div raiz oprincipal si no que nos gustaria asignarolo al segudno div.
+
+para lograrlo anularl el compoartamiento de vue y hacmoes.
+
+
+aunque tambien podemos cambiar en cel componente hijo.
+
+
+<script setup>
+
+defineOptions({
+    inheritAttrs: false,
+});
+</script>
+
+
+Cuando hacemos esto suele ocurrir es que ya no intenta inyectar al div principal 
+ class="bg-red-600" 
+
+
+
+
+y entonces podremos ocuapar en el componente hijo
+
+ <div class="p-4 text-white font-bold">Hola mundo mundial</div>
+
+ aplicandose el estilo
+
+ <div v-bind="$attrs">Hola mundo mundial</div>
+
+
+ con ello se van a capturar todas aquellos atributos, queestamos pasando y que no han sido capturados como props
+
+logrando nuevamente un color de fondo aplicado pero en esta ocacion en el segundo div.
+
+
+Este comportamiento funciona para cualquier atributo.
 
 
 
