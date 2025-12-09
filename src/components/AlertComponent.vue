@@ -23,7 +23,9 @@ const alertColor =
     class="flex items-center p-4 mb-4 text-sm border rounded-lg"
     role="alert"
   >
-    <span class="font-medium"> <slot name="title"> Info! - &nbsp;</slot></span>
+    <span class="font-medium" v-if="!$slots.title"> 
+        <slot name="title"> Info! - &nbsp;</slot>
+        </span>
     <slot> Contenido de respaldo </slot>
   </div>
 </template>

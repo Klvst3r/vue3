@@ -111,3 +111,20 @@ y en e componente hijo tampoco estamos enviando
 
 Si no pasamos parametros se deberia ocultar
 
+
+con in v-if que se muestre unicamente si , en el caso de que se este mandando dentro de los slots el titulo, lo demas se va a ocultar
+
+
+v-if="!$slots.title"> 
+Si enviamos un slot llamado title
+
+<template>
+  <AlertComponent type="danger">
+    <template #title> Alert Danger! - &nbsp; </template>
+    Hola desde la alerta
+  </AlertComponent>
+</template>
+
+
+Se mostrata la información, con eso conlcuidmos con contenido dinamico con slots
+

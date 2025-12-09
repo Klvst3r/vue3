@@ -4,7 +4,8 @@ import AlertComponent from '@/components/AlertComponent.vue'
 
 <template>
   <AlertComponent type="danger">
-    <!-- <template #title> Alert Danger! - &nbsp; </template> -->
+    <template #title> Alert Danger! - &nbsp; </template>
+    Hola desde la alerta
   </AlertComponent>
 </template>
 
