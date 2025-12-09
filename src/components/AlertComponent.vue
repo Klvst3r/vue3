@@ -23,7 +23,7 @@ const alertColor =
     class="flex items-center p-4 mb-4 text-sm border rounded-lg"
     role="alert"
   >
-    <span class="font-medium">Info!</span>
-    This is a default Tailwind/Flowbite alert.
+    <span class="font-medium">Info! -</span>
+    <slot></slot>
   </div>
 </template>

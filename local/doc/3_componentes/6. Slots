@@ -1,0 +1,51 @@
+6. Slots
+
+Los slots son una característica muy útil que permite crear componentes flexibles y personalizables.Vamos a utilizar slots para permitir que los componentes padres personalicen el contenido de los componentes hijos, y cómo utilizarlos para crear componentes más flexibles y reutilizables.
+
+Vamos a que el mensaje sea dinamico, el contenido fijo a contenido dinamico.
+
+a la hora de llmar el componente se pasaran los parametros utilizando atributos y recibidndolos com props
+asi que en el componente padre definidmos
+
+en elc pononente padre:
+
+<AlertComponent type="danger" text="Texto de la alerta" />
+
+Pero la inforamción que se evnia un larga, en ese caso se puede pasar como atributo, pero si es mas largo, no es lo ideal pasarlo como atributo, por lo que pasaremos con alg que se llama slots.
+
+consiste en dirigirnos al componente hijo, y centrarnos en la parte que sera variable. eliminamos y reemplazamos un slot
+
+
+Entonces en el componente hijo
+
+This is a default Tailwind/Flowbite alert.
+
+
+Quedando:
+
+ <div
+    :class="alertColor"
+    v-bind="attrs"
+    class="flex items-center p-4 mb-4 text-sm border rounded-lg"
+    role="alert"
+  >
+    <span class="font-medium">Info!</span>
+    <slot></slot>
+  </div>
+
+  cuando definimos un campo de slot l estamosindicando que cuando instanciemos este componente le vamos a pasar información, coocandolo en la definicion de las etiquetas slot
+
+  pasandolo de la siguiente manera
+
+
+  en el componente padre.
+
+
+
+
+ <AlertComponent type="danger">
+    This is a default Tailwind/Flowbite alert.
+  </AlertComponent>
+
+
+  todo lo que este dentro de las etiqeutas definidas sera el mensaje enviado como texto en nuestro slot
