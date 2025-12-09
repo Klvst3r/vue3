@@ -460,7 +460,31 @@ de la siguente manera
     class="flex items-center p-4 mb-4 text-sm border border-blue-300 rounded-lg"
     role="alert"
   >
-de primera instancia debe ser de color azul
+de primera instancia debe ser de color azul, por que esta tomando los valores por defautl 
+
+ahora podremos agregar mas tipos de alerta 
+
+quedando el color de las alerrtas:
+
+const alertColor =
+  {
+    info: 'text-blue-800 bg-blue-50',
+    danger: 'text-red-800 bg-red-50',
+    success: 'text-green-800 bg-green-50',
+    warning: 'text-yellow-800 bg-yellow-50',
+  }[props.type] || 'text-blue-800 bg-blue-50'
+</script>
+
+
+y entonces en el componente padrepodremos cambiar:
+-info
+-danger
+-success
+-warning
+-dark
+
+si no hay valor especificado toma el valor por default, incluso en un error de escritura.
+
 
 
 
