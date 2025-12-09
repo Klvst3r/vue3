@@ -170,3 +170,327 @@ Ese valor se parasara a traves de los componentes, lo que se define en el compon
 Si vemos para pasar un valor de un componente incial al final hemos tenido que pasar de componente a en componente, y el coopnente 2 no necesita es ainforamción siplemente  lo esta recibiendo y volviendo a pasar, como es un valor no es tan complejo pero al escalarse el proyecto, con 6 nives o mas, empezamos a trabajar de esta manera.
 
 
+Existe otra forma y es pasar un apropiedad del componente 1 al componente 3 sin estar definiendo props, entonces, es lo que se vera ahora.
+
+Limpiando entonces los componentes
+
+tenemos
+
+Componente padre
+
+<script setup>
+import OneComponent from '@/components/OneComponent.vue'
+</script>
+
+<template>
+  <OneComponent />
+</template>
+
+<style scoped></style>
+
+
+primer componente
+<script setup>
+import { ref } from 'vue'
+import TwoComponent from '@/components/TwoComponent.vue'
+
+
+
+const nombre = ref('Klvst3r');
+//const nombre = ref('')
+</script>
+
+<template>
+  <div class="bg-red-500 p-8">
+    <p class="text-2xl">Hola desde el componente 1</p>
+    
+    
+    <TwoComponent :nombre/>
+  </div>
+</template>
+
+<style scoped></style>
+
+
+
+segundo componete
+<script setup>
+import ThreeComponent from '@/components/ThreeComponent.vue'
+
+const props = defineProps(['nombre']);
+</script>
+
+<template>
+  <div class="bg-blue-500 p-8">
+    <p class="text-2xl">Hola desde el componente 2</p>
+    <ThreeComponent :nombre/>
+  </div>
+</template>
+
+<style scoped></style>
+
+
+
+tercer componente
+<script setup>
+import TwoComponent from '@/components/TwoComponent.vue'
+const props = defineProps(['nombre'])
+</script>
+
+<template>
+  <div class="bg-yellow-500 p-8">
+    <p class="text-2xl">Hola desde el componente 3</p>
+    <p>{{ props.nombre }}</p>
+  </div>
+</template>
+
+<style scoped></style>
+
+
+
+En el componente 1 tenemos
+
+<TwoComponent />
+
+en el componente 2
+quitamos
+
+const props = defineProps(['nombre']);
+
+por que ya no tenemos que recibir como un prop y eliminamos el pase del valor al tarcer componente quedando:
+
+
+
+<ThreeComponent />
+
+en el tercer componente quitamos 
+
+const props = defineProps(['nombre'])
+
+quedando
+
+primer componente
+<script setup>
+import { ref } from 'vue'
+import TwoComponent from '@/components/TwoComponent.vue'
+
+
+
+const nombre = ref('Klvst3r');
+//const nombre = ref('')
+</script>
+
+<template>
+  <div class="bg-red-500 p-8">
+    <p class="text-2xl">Hola desde el componente 1</p>
+    
+    
+    <TwoComponent />
+  </div>
+</template>
+
+<style scoped></style>
+
+
+Segundo componente
+<script setup>
+import ThreeComponent from '@/components/ThreeComponent.vue'
+
+
+</script>
+
+<template>
+  <div class="bg-blue-500 p-8">
+    <p class="text-2xl">Hola desde el componente 2</p>
+    <ThreeComponent />
+  </div>
+</template>
+
+<style scoped></style>
+
+
+tercer componente
+<script setup></script>
+
+<template>
+  <div class="bg-yellow-500 p-8">
+    <p class="text-2xl">Hola desde el componente 3</p>
+    <!-- <p>{{ props.nombre }}</p> -->
+  </div>
+</template>
+
+<style scoped></style>
+
+
+Entonces como vamos a trabajar.
+
+Vamos a dirigirnos al primer componente ya tenemos definida nuestra constante nombre, vamos a decir que la variable la queremos proporcionarla al componente hijo importando el siguiente metodo provide
+
+<script setup>
+import { ref, provide } from 'vue'
+
+const nombre = ref('Klvst3r');
+provide('nombre', nombre);
+
+</script>
+
+A este primer metodo tenemos que pasarle dos cosas, indicando como va a viajar la constante, queremos que viaje dentro de un compo llamado nombre
+
+provide('nombre', nombre);
+
+
+
+Como segundo parametro es pasarle el valor de nombre, la idea es ya no pasar por el componente 2
+
+
+Ahora en el comonente que queiro recibirlo que nuestro caso es el componente 3, como lo recibimos, centrandonos en el script
+
+importamos este metodo
+
+import { inject } from 'vue'
+
+
+Luego definimos una constante, con el nombre nombre y queremos recibir lo que se mando desde el componente 1
+
+que es un campo llamado nombre 
+
+const nombre = inject('nombre')
+
+eso seria todo, pasamos una variable del componente padre al componente nieto.
+
+PAra comprobarl
+
+colocamos un aetieuta de imprsin con la valor de la constante
+
+quedando entonces el componente 1
+<script setup>
+import { ref, provide } from 'vue'
+import TwoComponent from '@/components/TwoComponent.vue'
+const nombre = ref('Klvst3r')
+provide('nombre', nombre)
+</script>
+
+<template>
+  <div class="bg-red-500 p-8">
+    <p class="text-2xl">Hola desde el componente 1</p>
+
+    <TwoComponent />
+  </div>
+</template>
+
+<style scoped></style>
+
+
+y elc omponente 3 que recibe el valor
+
+<script setup>
+import { inject } from 'vue'
+
+const nombre = inject('nombre')
+</script>
+
+<template>
+  <div class="bg-yellow-500 p-8">
+    <p class="text-2xl">Hola desde el componente 3</p>
+    <p>
+      {{ nombre }}
+    </p>
+  </div>
+</template>
+
+<style scoped></style>
+
+
+
+Esta constante viaja dentro de un campo llamado nombre, con un parametro con el valor que va a biajar, como mencionamos, es que ya no vamos a pasar por el componente 2, y vamos a recbirlo de fente en el componente 3, mediante el script e importamos el metodo inject, luego definimos una constante le damos nombre y vamos a decirque que queremos recibir del componente 1 y lo recibimos.
+
+Pasamos una variable de componente padre a componente nieto
+
+Con esto tenemos el valor, de eta manera respeta, las variable reactivas.
+
+si en el comopmnte 1 definimos un input, inicando el componente reactivo nombre
+
+
+<input type="text" v-model="nombre">
+
+Con esto lo que enviemos desde el componente 1 se envia hacia el componente 3
+
+al momento de imprimir no devemos hacer
+
+{{ nombre }}
+
+por queesun ref no un string entonces debe ir la impresion
+
+Queda entonces el componente 1
+
+<script setup>
+import { ref, provide } from 'vue'
+import TwoComponent from '@/components/TwoComponent.vue'
+
+const nombre = ref('Klvst3r')
+
+provide('nombre', nombre)
+</script>
+
+<template>
+  <div class="bg-red-500 p-8">
+    <p class="text-2xl">Hola desde el componente 1</p>
+
+    <input type="text" v-model="nombre" />
+
+    <TwoComponent />
+  </div>
+</template>
+
+<style scoped></style>
+
+
+y recibe el componente 3
+
+<script setup>
+import { inject, watch, ref } from 'vue'
+
+const nombre = inject('nombre') // <-- ref compartido
+const mensaje = ref('') // <-- valor que mostrarás
+
+watch(nombre, (nuevoValor) => {
+  mensaje.value = nuevoValor // <-- actualiza el mensaje visible
+})
+</script>
+
+<template>
+  <div class="bg-yellow-500 p-8">
+    <p class="text-2xl">Hola desde el componente 3</p>
+
+    <p>
+      Nombre recibido por provide/inject:
+      <strong>{{ nombre.value }}</strong>
+    </p>
+
+    <p class="mt-4">
+      Valor detectado por watch:
+      <strong>{{ mensaje }}</strong>
+    </p>
+  </div>
+</template>
+
+
+
+Cuando cambies el input en el componente 1:
+
+✔ nombre.value cambia
+✔ el watch recibe el valor nuevo
+✔ mensaje.value se actualiza
+✔ se imprime en tu etiqueta <p> de componente 3
+
+SIN necesidad de consola.
+
+💡 BONUS: Si solo quieres mostrar el valor y NO usar watch
+
+Tu template puede ser simplemente:
+
+{{ nombre.value }}
+
+
+Y debería mostrarse sin nada más.
+El watch solo es útil si quieres ejecutar lógica adicional.
