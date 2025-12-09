@@ -1,0 +1,215 @@
+5. Atributos heredados
+
+Vamos a ver como utilizar un comoonente reutilizable.
+
+Utilizando un componente que muestre una alerta, pero esa alerta sirve para definir de diferente tipo.
+
+Vamos a utilizarlo en diferentes ocntextos.
+
+Vamos a utilizar TailwindCSS
+
+
+Usaremos CDN de TailwindCSS via CDN empleando el script
+
+ <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+ dentro de la cabecera del archivo html
+
+
+ Debajo del script podemos ya utilizar entonces los estilos
+
+ <style type="text/tailwindcss">      @theme {        --color-clifford: #da373d;      }    </style>
+
+
+ Esta es la forma mas facil, en un futuro se instalara tailwindcss con vite
+
+Ahora todos nuestros elementos ya no tienen mas estilos, esto muestra que vamos correctos.
+
+En el archivo .vue
+
+
+
+En el componente padre tenemos nuestra estructura limpia.
+
+
+
+<script setup></script>
+
+<template></template>
+
+<style scoped></style>
+
+
+dEfinimos un nuevo componete
+
+Creando un nuevo componente creando el archivo.
+
+
+AlertComponent.vue
+
+y en el componente padre, vamos a hacer uso de este componente en el componente proncipal, cimplemente dentro del template
+
+
+<AlertComponent></AlertComponent>
+
+
+en nuestro caso lo hacemos asi:
+
+<AlertComponent/>
+
+
+antes de diseñara, sabemos que podemos pasar informacon del componente padre al hijo.
+
+para ello deifnimos una structura igual en el componente hijo. 
+
+Podriamos pasarle un parametro mediante el atributo llamado classq que ese atributo tenga un estilo, y se tiene la posibilidad en el script del componente hijo definir una constante
+
+
+
+Definiendo una constante con la definicion de los props
+
+<script setup>
+const props = defineProps(['class'])
+</script>
+
+y en un div imprimir el props 
+<template>
+  <div>
+    {{ propsclass }}
+  </div>
+</template>
+
+para lograr capturar
+
+
+En el coonponente padre se importa
+
+import AlertComponent from '@/components/AlertComponent.vue'
+
+o bien
+
+import AlertComponent from './components/AlertComponent.vue'
+
+Capturamos ese valor, 
+
+bg-red-600
+
+
+pero si no capturamos ese props, por ejemplo en el template imprimimos un texto
+
+  <div>
+    Hola mundo
+  </div>
+
+y entoces vemos que ocurre
+
+
+En Vue 3, la prop class no se pasa automáticamente al root element del componente hijo a menos que:
+
+El componente tenga un solo elemento raíz, y
+
+No estés usando inheritAttrs: false, y
+
+No estés reemplazando manualmente los atributos del root.
+
+Ahora mismo tu AlertComponent no usa la clase que recibe, porque simplemente tiene:
+
+<div>Hola mundo mundial</div>
+
+
+Vue no sabe que quieres aplicar la clase recibida aquí.
+
+✅ Solución 1: Pasar atributos automáticamente (<script setup>)
+
+En <script setup>, todos los atributos no definidos como props se pasan como attrs al elemento raíz.
+
+➡️ Esto significa que NO declares class como prop, porque entonces Vue deja de tratarla como atributo HTML.
+
+Componente hijo SIN declarar class:
+<!-- AlertComponent.vue -->
+<script setup>
+// NO declares la prop class
+// const props = defineProps(['class']) ❌
+</script>
+
+<template>
+  <!-- Vue aplicará attrs (incluido class) automáticamente -->
+  <div class="p-4 text-white font-bold">
+    Hola mundo mundial
+  </div>
+</template>
+
+
+Ahora en el padre:
+
+<AlertComponent class="bg-red-600" />
+
+
+Sí aplicará bg-red-600 al <div> del hijo.
+
+⭐ Resultado final
+
+El hijo termina así:
+
+<div class="p-4 text-white font-bold bg-red-600">
+
+
+Tailwind aplica los estilos correctamente.
+
+❗ ¿Y si sí quieres usar la prop class?
+
+Entonces debes aplicarla manualmente:
+
+<script setup>
+const props = defineProps(['class'])
+</script>
+
+<template>
+  <div :class="props.class" class="p-4 text-white font-bold">
+    Hola mundo mundial
+  </div>
+</template>
+
+
+O combinar clases:
+
+<div :class="['p-4 text-white font-bold', props.class]">
+
+📌 Recomendación
+
+Para clases, lo más simple y recomendado en Vue 3:
+
+✔️ No declares class como prop
+✔️ Deja que Vue la pase como atributo automáticamente
+
+este segundo caso es el que nos funciona para nuestro caso aplicando el estilo deifnido en el padre en el hijo
+
+
+<div :class="props.class" class="p-4 text-white font-bold">
+
+y en el hijo aplicamos un texto en color blanco
+
+
+Asiq ue cuando le pasamos atributos pero no lo capturamos como un prop debemos inyectarlo justamento en el elemento raiz que contiene a los elementos.
+
+El div puede teneruna clase lo que hara vue es combinar varios atributos como es el caso del texto blanco
+
+
+
+
+
+
+
+
+
+Referencias.
+
+https://tailwindcss.com/
+
+Comenzar a usr Tailwindcss
+https://tailwindcss.com/docs/installation/using-vite
+
+
+Con CDN
+https://tailwindcss.com/docs/installation/play-cdn
+
